@@ -85,7 +85,6 @@ const FitnessAssessment = ({ onClose, onBookConsultation }) => {
   const calculateResults = () => {
     // Simple scoring logic - in a real app, this would be more sophisticated
     const goal = answers[1] || '';
-    const level = answers[3] || '';
     const days = answers[2] || '';
     
     let recommendation = "Based on your assessment, we recommend a ";
