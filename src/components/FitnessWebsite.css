@@ -252,13 +252,68 @@ section {
   padding: 2.5rem;
   border-radius: 4px;
   border: 1px solid #e0e0e0;
-  text-align: center;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  text-align: left;
+  transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .offer-card:hover {
   transform: translateY(-2px);
   border-color: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.offer-card.expanded {
+  border-color: #1a1a1a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.offer-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+.offer-header-content {
+  flex: 1;
+}
+
+.offer-header-content h3 {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.offer-header-content p {
+  text-align: left;
+  margin: 0;
+}
+
+.expand-icon {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f5f5f5;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.offer-card:hover .expand-icon {
+  background: #e0e0e0;
+}
+
+.offer-card.expanded .expand-icon {
+  background: #1a1a1a;
+  color: white;
 }
 
 .offer-icon {
@@ -279,6 +334,124 @@ section {
   color: #4a4a4a;
   line-height: 1.7;
   font-size: 0.95rem;
+}
+
+/* Expanded Offer Details */
+.offer-details {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.offer-detail-section {
+  margin-bottom: 2rem;
+}
+
+.offer-detail-section:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.offer-detail-section h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  letter-spacing: -0.2px;
+}
+
+.offer-detail-section ul,
+.offer-detail-section ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #4a4a4a;
+  line-height: 1.8;
+}
+
+.offer-detail-section li {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.offer-detail-section ul li::marker {
+  color: #1a1a1a;
+}
+
+.offer-detail-section ol li {
+  padding-left: 0.5rem;
+}
+
+.offer-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0.5rem 0;
+}
+
+.offer-price-note {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin: 0;
+}
+
+.offer-cta-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.offer-primary-cta {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  flex: 1;
+  min-width: 200px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.offer-primary-cta:hover {
+  background: #333;
+  opacity: 0.95;
+}
+
+.offer-secondary-cta {
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  padding: 0.9rem 1.8rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex: 1;
+  min-width: 200px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.offer-secondary-cta:hover {
+  background: #f5f5f5;
 }
 
 /* Assessment Section */
@@ -569,6 +742,24 @@ section {
   .testimonials-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .offer-card {
+    padding: 1.5rem;
+  }
+
+  .offer-card-header {
+    gap: 1rem;
+  }
+
+  .offer-cta-group {
+    flex-direction: column;
+  }
+
+  .offer-primary-cta,
+  .offer-secondary-cta {
+    width: 100%;
+    min-width: 100%;
   }
 
   .modal-content {
