@@ -29,6 +29,7 @@ const FitnessWebsite = () => {
           <ul className="nav-menu">
             <li><a href="#home" onClick={() => scrollToSection('home')} className={activeSection === 'home' ? 'active' : ''}>Home</a></li>
             <li><a href="#about" onClick={() => scrollToSection('about')} className={activeSection === 'about' ? 'active' : ''}>About</a></li>
+            <li><a href="#how-we-help" onClick={() => scrollToSection('how-we-help')} className={activeSection === 'how-we-help' ? 'active' : ''}>How We Help</a></li>
             <li><a href="#offer" onClick={() => scrollToSection('offer')} className={activeSection === 'offer' ? 'active' : ''}>What We Offer</a></li>
             <li><a href="#assessment" onClick={() => { setShowAssessment(true); scrollToSection('assessment'); }} className={activeSection === 'assessment' ? 'active' : ''}>Assessment</a></li>
             <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')} className={activeSection === 'testimonials' ? 'active' : ''}>Testimonials</a></li>
@@ -42,12 +43,14 @@ const FitnessWebsite = () => {
       {/* Hero Section */}
       <section id="home" className="hero-section">
         <div className="hero-content">
-          <h1 className="hero-title">UNLEASH YOUR POTENTIAL</h1>
+          <h1 className="hero-title">NOT ANOTHER GENERIC STRENGTH PROGRAM</h1>
           <p className="hero-subtitle">
-            Painful joints? Want to improve technique? Need more strength and power?
+            We solve your specific swimming problems. From painful shoulders to technique breakdowns, 
+            we identify what's holding you back and create a personalized program to get you from where 
+            you are to where you need to be.
           </p>
           <button className="hero-cta" onClick={() => setShowCalendly(true)}>
-            Book Consultation
+            Get Your Personalized Solution
           </button>
         </div>
         <div className="hero-images">
@@ -74,14 +77,68 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">Created for swimmers by a swimmer.</h2>
           <p className="section-description">
-            White Water Method offers personalized online strength and conditioning programs 
-            designed to help you reach your peak performance. Whether you're recovering from 
-            injury, looking to improve your technique, or building strength and power, 
-            we provide customized training solutions tailored to your unique needs.
+            White Water Method isn't a one-size-fits-all program. We understand that every swimmer 
+            has unique limitations, imbalances, and goals. Through comprehensive assessment and 
+            movement analysis, we identify the root causes of your problems—whether that's chronic 
+            shoulder pain, technique issues, or performance plateaus—and design a program that 
+            specifically addresses what YOU need to improve.
           </p>
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
             <button className="assessment-button" onClick={() => setShowCalendly(true)}>
               Get Started
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* How We Help Section - Point A to Point B */}
+      <section id="how-we-help" className="how-we-help-section">
+        <div className="section-container">
+          <h2 className="section-title">How We Get You From Point A to Point B</h2>
+          <p className="section-description">
+            Our problem-solving approach starts with understanding where you are and creating a clear, 
+            individualized path to where you want to be.
+          </p>
+          <div className="process-steps">
+            <div className="process-step">
+              <div className="process-number">1</div>
+              <div className="process-content">
+                <h3>Identify Your Specific Problems</h3>
+                <p>
+                  Through detailed movement assessment and conversation, we identify exactly what's 
+                  limiting your performance. Is it shoulder mobility? Core instability? Muscle imbalances? 
+                  We find the root cause, not just the symptoms.
+                </p>
+              </div>
+            </div>
+            <div className="process-arrow">→</div>
+            <div className="process-step">
+              <div className="process-number">2</div>
+              <div className="process-content">
+                <h3>Design Your Personalized Program</h3>
+                <p>
+                  No cookie-cutter workouts. Your program is built specifically to address YOUR 
+                  identified issues and move YOU toward YOUR goals. Every exercise is chosen for 
+                  a purpose, based on anatomy, movement science, and your individual needs.
+                </p>
+              </div>
+            </div>
+            <div className="process-arrow">→</div>
+            <div className="process-step">
+              <div className="process-number">3</div>
+              <div className="process-content">
+                <h3>Track Progress & Adjust</h3>
+                <p>
+                  As you progress, we continuously assess and refine your program. What worked 
+                  last month might need adjustment next month. Your program evolves with you, 
+                  ensuring you're always moving toward your goals.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <button className="assessment-button" onClick={() => setShowAssessment(true)}>
+              Start Your Assessment
             </button>
           </div>
         </div>
@@ -92,7 +149,8 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">What We Offer</h2>
           <p className="section-description">
-            Click on any program below to learn more about what's included, how it works, and pricing.
+            Every program is customized to solve your specific problems. Click on any option below 
+            to learn more about how we'll address your unique needs.
           </p>
           <div className="offer-grid">
             <div 
@@ -103,7 +161,7 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">👤</div>
                 <div className="offer-header-content">
                   <h3>Individual Training</h3>
-                  <p>One-on-one personalized coaching tailored to your specific needs</p>
+                  <p>Personalized problem-solving program designed specifically for what you need to improve</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'individual' ? '−' : '+'}</div>
               </div>
@@ -112,22 +170,22 @@ const FitnessWebsite = () => {
                   <div className="offer-detail-section">
                     <h4>What's Included:</h4>
                     <ul>
-                      <li>Customized training program designed specifically for you</li>
-                      <li>Weekly program updates based on your progress</li>
-                      <li>Video form analysis and technique feedback</li>
-                      <li>Direct messaging support for questions</li>
-                      <li>Monthly progress assessments and goal setting</li>
-                      <li>Nutrition guidance and recovery protocols</li>
+                      <li>Personalized program that addresses your specific limitations and goals</li>
+                      <li>Weekly program updates based on your progress and evolving needs</li>
+                      <li>Movement and technique analysis to identify root causes</li>
+                      <li>Direct messaging support for questions and program modifications</li>
+                      <li>Regular assessments to track improvements and adjust approach</li>
+                      <li>Recovery and injury prevention strategies tailored to your body</li>
                     </ul>
                   </div>
                   <div className="offer-detail-section">
                     <h4>How It Works:</h4>
                     <ol>
-                      <li>Schedule a consultation call to discuss your goals and current situation</li>
-                      <li>Complete a comprehensive fitness assessment</li>
-                      <li>Receive your personalized program within 48 hours</li>
-                      <li>Follow your program with ongoing support and adjustments</li>
-                      <li>Track progress through regular check-ins and assessments</li>
+                      <li>Schedule a consultation to identify your specific problems and goals</li>
+                      <li>Complete a comprehensive movement and fitness assessment</li>
+                      <li>Receive your personalized program designed to address YOUR identified issues</li>
+                      <li>Follow your program with ongoing support and program adjustments</li>
+                      <li>Track progress through regular check-ins and continuous assessment</li>
                     </ol>
                   </div>
                   <div className="offer-detail-section">
@@ -167,7 +225,7 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">👥</div>
                 <div className="offer-header-content">
                   <h3>Team Training</h3>
-                  <p>Group programs designed for swim teams and clubs</p>
+                  <p>Customized team programs that address your team's specific needs and common issues</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'team' ? '−' : '+'}</div>
               </div>
@@ -176,22 +234,22 @@ const FitnessWebsite = () => {
                   <div className="offer-detail-section">
                     <h4>What's Included:</h4>
                     <ul>
-                      <li>Team-wide strength and conditioning program</li>
-                      <li>Age and skill-appropriate program variations</li>
-                      <li>Coach education and support materials</li>
-                      <li>Team performance tracking and analytics</li>
-                      <li>Regular program updates throughout the season</li>
-                      <li>Injury prevention protocols for the team</li>
+                      <li>Customized team program that addresses your team's specific issues</li>
+                      <li>Individualized variations for different needs, ages, and skill levels</li>
+                      <li>Coach education to help understand the anatomy and science behind the program</li>
+                      <li>Performance tracking to identify what's working and what needs adjustment</li>
+                      <li>Regular program updates based on team progress and changing needs</li>
+                      <li>Injury prevention protocols tailored to common swimming problems</li>
                     </ul>
                   </div>
                   <div className="offer-detail-section">
                     <h4>How It Works:</h4>
                     <ol>
-                      <li>Initial consultation with coaching staff to understand team needs</li>
-                      <li>Assessment of team's current fitness levels and goals</li>
-                      <li>Custom program design aligned with training schedule</li>
-                      <li>Program delivery and coach training session</li>
-                      <li>Ongoing support and program adjustments as needed</li>
+                      <li>Consultation to identify your team's specific issues and common problems</li>
+                      <li>Assessment of team members to understand individual and collective needs</li>
+                      <li>Custom program design that addresses identified issues and aligns with your schedule</li>
+                      <li>Coach education to help your staff understand the "why" behind the program</li>
+                      <li>Ongoing support with program adjustments based on team progress and needs</li>
                     </ol>
                   </div>
                   <div className="offer-detail-section">
@@ -357,13 +415,14 @@ const FitnessWebsite = () => {
       {/* Fitness Assessment Section */}
       <section id="assessment" className="assessment-section">
         <div className="section-container">
-          <h2 className="section-title">Fitness Assessment</h2>
+          <h2 className="section-title">Identify Your Starting Point</h2>
           <p className="section-description">
-            Take our comprehensive fitness assessment to get personalized recommendations 
-            and understand your current fitness level.
+            Our assessment helps us understand exactly where you are right now—your strengths, 
+            limitations, and specific areas that need attention. This is the first step in creating 
+            your personalized solution.
           </p>
           <button className="assessment-button" onClick={() => setShowAssessment(true)}>
-            Start Assessment
+            Start Your Assessment
           </button>
         </div>
       </section>
