@@ -321,16 +321,24 @@ section {
   background: #ffffff;
 }
 
-.offer-grid {
+.offer-section-lead {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.offer-section .offer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 44rem;
+  margin: 2rem auto 0;
 }
 
 .offer-card {
   background: #ffffff;
-  padding: 2.5rem;
+  padding: 1.5rem 1.75rem;
   border-radius: 4px;
   border: 1px solid #e0e0e0;
   text-align: left;
@@ -349,6 +357,7 @@ section {
 .offer-card.expanded {
   border-color: #1a1a1a;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding-bottom: 2rem;
 }
 
 .offer-card-header {
@@ -419,10 +428,32 @@ section {
 
 /* Expanded Offer Details */
 .offer-details {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e0e0e0;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e8e8e8;
   animation: slideDown 0.3s ease-out;
+}
+
+.offer-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.offer-details-grid .offer-detail-section {
+  margin-bottom: 0;
+}
+
+.offer-detail-investment {
+  margin-bottom: 0;
+  padding-top: 0;
+}
+
+.offer-detail-investment h4 {
+  margin-bottom: 0.65rem;
 }
 
 @keyframes slideDown {
@@ -461,8 +492,8 @@ section {
 }
 
 .offer-detail-section li {
-  margin-bottom: 0.75rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.92rem;
 }
 
 .offer-detail-section ul li::marker {
@@ -489,8 +520,8 @@ section {
 
 .offer-cta-group {
   display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 
@@ -819,14 +850,28 @@ section {
     width: 100%;
   }
 
-  .offer-grid,
+  .offer-section .offer-grid,
   .testimonials-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem;
+  }
+
+  .offer-details-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .offer-details-grid .offer-detail-section:first-child {
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #e8e8e8;
   }
 
   .offer-card {
-    padding: 1.5rem;
+    padding: 1.35rem 1.25rem;
   }
 
   .offer-card-header {

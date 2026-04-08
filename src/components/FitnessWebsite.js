@@ -148,9 +148,9 @@ const FitnessWebsite = () => {
       <section id="offer" className="offer-section">
         <div className="section-container">
           <h2 className="section-title">What We Offer</h2>
-          <p className="section-description">
-            Every program is customized to solve your specific problems. Click on any option below 
-            to learn more about how we'll address your unique needs.
+          <p className="section-description offer-section-lead">
+            Custom programming for swimmers and teams. Expand a card for what&apos;s included, how it
+            works, and pricing—then book a consultation or start with an assessment.
           </p>
           <div className="offer-grid">
             <div 
@@ -161,37 +161,37 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">👤</div>
                 <div className="offer-header-content">
                   <h3>Individual Training</h3>
-                  <p>Personalized problem-solving program designed specifically for what you need to improve</p>
+                  <p>One-on-one programming built around your assessment, goals, and schedule.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'individual' ? '−' : '+'}</div>
               </div>
               {expandedOffer === 'individual' && (
                 <div className="offer-details">
-                  <div className="offer-detail-section">
-                    <h4>What's Included:</h4>
-                    <ul>
-                      <li>Personalized program that addresses your specific limitations and goals</li>
-                      <li>Weekly program updates based on your progress and evolving needs</li>
-                      <li>Movement and technique analysis to identify root causes</li>
-                      <li>Direct messaging support for questions and program modifications</li>
-                      <li>Regular assessments to track improvements and adjust approach</li>
-                      <li>Recovery and injury prevention strategies tailored to your body</li>
-                    </ul>
+                  <div className="offer-details-grid">
+                    <div className="offer-detail-section">
+                      <h4>What&apos;s included</h4>
+                      <ul>
+                        <li>Program tailored to your limitations, goals, and pool schedule</li>
+                        <li>Weekly updates as you progress</li>
+                        <li>Movement analysis to target root causes, not symptoms</li>
+                        <li>Direct messaging for questions and tweaks</li>
+                        <li>Recovery and prehab built into the plan</li>
+                      </ul>
+                    </div>
+                    <div className="offer-detail-section">
+                      <h4>How it works</h4>
+                      <ol>
+                        <li>Consultation to align on problems and goals</li>
+                        <li>Movement and fitness assessment</li>
+                        <li>Your personalized program is delivered</li>
+                        <li>Ongoing check-ins and adjustments</li>
+                      </ol>
+                    </div>
                   </div>
-                  <div className="offer-detail-section">
-                    <h4>How It Works:</h4>
-                    <ol>
-                      <li>Schedule a consultation to identify your specific problems and goals</li>
-                      <li>Complete a comprehensive movement and fitness assessment</li>
-                      <li>Receive your personalized program designed to address YOUR identified issues</li>
-                      <li>Follow your program with ongoing support and program adjustments</li>
-                      <li>Track progress through regular check-ins and continuous assessment</li>
-                    </ol>
-                  </div>
-                  <div className="offer-detail-section">
-                    <h4>Investment:</h4>
-                    <p className="offer-price">Starting at $XXX/month</p>
-                    <p className="offer-price-note">*Pricing varies based on program intensity and support level</p>
+                  <div className="offer-detail-section offer-detail-investment">
+                    <h4>Investment</h4>
+                    <p className="offer-price">From $XXX / month</p>
+                    <p className="offer-price-note">Final rate depends on intensity and support level.</p>
                   </div>
                   <div className="offer-cta-group">
                     <button 
@@ -225,37 +225,36 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">👥</div>
                 <div className="offer-header-content">
                   <h3>Team Training</h3>
-                  <p>Customized team programs that address your team's specific needs and common issues</p>
+                  <p>Team-wide programming with variations for age groups, events, and common problem areas.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'team' ? '−' : '+'}</div>
               </div>
               {expandedOffer === 'team' && (
                 <div className="offer-details">
-                  <div className="offer-detail-section">
-                    <h4>What's Included:</h4>
-                    <ul>
-                      <li>Customized team program that addresses your team's specific issues</li>
-                      <li>Individualized variations for different needs, ages, and skill levels</li>
-                      <li>Coach education to help understand the anatomy and science behind the program</li>
-                      <li>Performance tracking to identify what's working and what needs adjustment</li>
-                      <li>Regular program updates based on team progress and changing needs</li>
-                      <li>Injury prevention protocols tailored to common swimming problems</li>
-                    </ul>
+                  <div className="offer-details-grid">
+                    <div className="offer-detail-section">
+                      <h4>What&apos;s included</h4>
+                      <ul>
+                        <li>Team plan plus individual variations where needed</li>
+                        <li>Coach education on anatomy and the &quot;why&quot; behind each block</li>
+                        <li>Progress tracking and regular program updates</li>
+                        <li>Prehab protocols for common swim issues</li>
+                      </ul>
+                    </div>
+                    <div className="offer-detail-section">
+                      <h4>How it works</h4>
+                      <ol>
+                        <li>Consultation on team issues, roster, and schedule</li>
+                        <li>Assessments to map group and individual needs</li>
+                        <li>Custom program design and staff walkthrough</li>
+                        <li>Ongoing support and seasonal adjustments</li>
+                      </ol>
+                    </div>
                   </div>
-                  <div className="offer-detail-section">
-                    <h4>How It Works:</h4>
-                    <ol>
-                      <li>Consultation to identify your team's specific issues and common problems</li>
-                      <li>Assessment of team members to understand individual and collective needs</li>
-                      <li>Custom program design that addresses identified issues and aligns with your schedule</li>
-                      <li>Coach education to help your staff understand the "why" behind the program</li>
-                      <li>Ongoing support with program adjustments based on team progress and needs</li>
-                    </ol>
-                  </div>
-                  <div className="offer-detail-section">
-                    <h4>Investment:</h4>
-                    <p className="offer-price">Starting at $XXX/month per team</p>
-                    <p className="offer-price-note">*Pricing based on team size and program scope</p>
+                  <div className="offer-detail-section offer-detail-investment">
+                    <h4>Investment</h4>
+                    <p className="offer-price">From $XXX / month per team</p>
+                    <p className="offer-price-note">Based on roster size and program scope.</p>
                   </div>
                   <div className="offer-cta-group">
                     <button 
@@ -289,37 +288,37 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">🩺</div>
                 <div className="offer-header-content">
                   <h3>Injury Recovery</h3>
-                  <p>Specialized rehabilitation and return-to-sport programs</p>
+                  <p>Rehab and return-to-swim planning, coordinated with your care team when appropriate.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'injury' ? '−' : '+'}</div>
               </div>
               {expandedOffer === 'injury' && (
                 <div className="offer-details">
-                  <div className="offer-detail-section">
-                    <h4>What's Included:</h4>
-                    <ul>
-                      <li>Injury-specific rehabilitation program</li>
-                      <li>Collaboration with your healthcare providers</li>
-                      <li>Gradual return-to-sport progression plan</li>
-                      <li>Pain management and movement quality focus</li>
-                      <li>Prevention strategies to avoid re-injury</li>
-                      <li>Priority support and faster response times</li>
-                    </ul>
+                  <div className="offer-details-grid">
+                    <div className="offer-detail-section">
+                      <h4>What&apos;s included</h4>
+                      <ul>
+                        <li>Injury-specific rehab progression</li>
+                        <li>Coordination with your providers when needed</li>
+                        <li>Gradual return-to-training plan</li>
+                        <li>Movement quality and re-injury prevention</li>
+                        <li>Priority messaging for faster turnaround</li>
+                      </ul>
+                    </div>
+                    <div className="offer-detail-section">
+                      <h4>How it works</h4>
+                      <ol>
+                        <li>Consultation, goals, and medical history review</li>
+                        <li>Custom rehab program for your injury and stage</li>
+                        <li>Check-ins to progress load safely</li>
+                        <li>Build back to full training and competition</li>
+                      </ol>
+                    </div>
                   </div>
-                  <div className="offer-detail-section">
-                    <h4>How It Works:</h4>
-                    <ol>
-                      <li>Initial consultation to understand your injury and recovery goals</li>
-                      <li>Review of medical history and current limitations</li>
-                      <li>Custom rehabilitation program designed for your specific injury</li>
-                      <li>Regular check-ins to monitor progress and adjust program</li>
-                      <li>Gradual progression back to full training and competition</li>
-                    </ol>
-                  </div>
-                  <div className="offer-detail-section">
-                    <h4>Investment:</h4>
-                    <p className="offer-price">Starting at $XXX/month</p>
-                    <p className="offer-price-note">*Pricing may vary based on injury complexity and recovery timeline</p>
+                  <div className="offer-detail-section offer-detail-investment">
+                    <h4>Investment</h4>
+                    <p className="offer-price">From $XXX / month</p>
+                    <p className="offer-price-note">Varies with injury complexity and timeline.</p>
                   </div>
                   <div className="offer-cta-group">
                     <button 
@@ -353,37 +352,38 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">🏆</div>
                 <div className="offer-header-content">
                   <h3>Performance Optimization</h3>
-                  <p>Advanced programs for competitive athletes seeking peak performance</p>
+                  <p>Elite strength, periodization, and peaking aligned to your competition calendar.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'performance' ? '−' : '+'}</div>
               </div>
               {expandedOffer === 'performance' && (
                 <div className="offer-details">
-                  <div className="offer-detail-section">
-                    <h4>What's Included:</h4>
-                    <ul>
-                      <li>Elite-level strength and power development</li>
-                      <li>Competition-specific periodization planning</li>
-                      <li>Advanced technique analysis and optimization</li>
-                      <li>Recovery and regeneration protocols</li>
-                      <li>Mental performance strategies</li>
-                      <li>Priority access and expedited program updates</li>
-                    </ul>
+                  <div className="offer-details-grid">
+                    <div className="offer-detail-section">
+                      <h4>What&apos;s included</h4>
+                      <ul>
+                        <li>Strength and power development for your events</li>
+                        <li>Meet-calendar periodization and peaking</li>
+                        <li>Technique and recovery protocols</li>
+                        <li>Mental performance tools where useful</li>
+                        <li>Priority updates and fast program turns</li>
+                      </ul>
+                    </div>
+                    <div className="offer-detail-section">
+                      <h4>How it works</h4>
+                      <ol>
+                        <li>Performance assessment and goal setting</li>
+                        <li>Review training load and competition schedule</li>
+                        <li>Periodized plan tied to key meets</li>
+                        <li>Weekly adjustments from training feedback and data</li>
+                        <li>Peaking strategy for championship targets</li>
+                      </ol>
+                    </div>
                   </div>
-                  <div className="offer-detail-section">
-                    <h4>How It Works:</h4>
-                    <ol>
-                      <li>Comprehensive performance assessment and goal setting</li>
-                      <li>Analysis of current training and competition schedule</li>
-                      <li>Custom periodized program aligned with your competition calendar</li>
-                      <li>Weekly program adjustments based on performance data</li>
-                      <li>Peak performance planning for key competitions</li>
-                    </ol>
-                  </div>
-                  <div className="offer-detail-section">
-                    <h4>Investment:</h4>
-                    <p className="offer-price">Starting at $XXX/month</p>
-                    <p className="offer-price-note">*Premium pricing for elite-level support and programming</p>
+                  <div className="offer-detail-section offer-detail-investment">
+                    <h4>Investment</h4>
+                    <p className="offer-price">From $XXX / month</p>
+                    <p className="offer-price-note">Premium tier for elite support and programming depth.</p>
                   </div>
                   <div className="offer-cta-group">
                     <button 
