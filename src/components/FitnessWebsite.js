@@ -3,6 +3,8 @@ import './FitnessWebsite.css';
 import FitnessAssessment from './FitnessAssessment';
 import CalendlyWidget from './CalendlyWidget';
 
+const logoSrc = `${process.env.PUBLIC_URL || ''}/wwm-logo.png`;
+
 const FitnessWebsite = () => {
   const [showCalendly, setShowCalendly] = useState(false);
   const [showAssessment, setShowAssessment] = useState(false);
@@ -23,7 +25,14 @@ const FitnessWebsite = () => {
       <nav className="navbar">
         <div className="nav-container">
           <div className="logo">
-            <div className="logo-icon">W</div>
+            <img
+              src={logoSrc}
+              alt=""
+              className="logo-mark"
+              width={40}
+              height={40}
+              decoding="async"
+            />
             <span className="logo-text">White Water Method</span>
           </div>
           <ul className="nav-menu">
@@ -43,6 +52,14 @@ const FitnessWebsite = () => {
       {/* Hero Section */}
       <section id="home" className="hero-section">
         <div className="hero-content">
+          <img
+            src={logoSrc}
+            alt="White Water Method"
+            className="hero-logo"
+            width={320}
+            height={320}
+            decoding="async"
+          />
           <h1 className="hero-title">NOT ANOTHER GENERIC STRENGTH PROGRAM</h1>
           <p className="hero-subtitle">
             We solve your specific swimming problems. From painful shoulders to technique breakdowns, 
