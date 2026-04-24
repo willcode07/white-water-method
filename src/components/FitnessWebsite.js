@@ -1,15 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FitnessWebsite.css';
 import FitnessAssessment from './FitnessAssessment';
 import CalendlyWidget from './CalendlyWidget';
 
 const logoSrc = `${process.env.PUBLIC_URL || ''}/wwm-logo.png`;
 
+const THEME_KEY = 'wwm-theme';
+const CONTACT_EMAIL = 'whitewatermethod@gmail.com';
+
 const FitnessWebsite = () => {
   const [showCalendly, setShowCalendly] = useState(false);
   const [showAssessment, setShowAssessment] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [expandedOffer, setExpandedOffer] = useState(null);
+  const [theme, setTheme] = useState(() => {
+    try {
+      const stored = localStorage.getItem(THEME_KEY);
+      if (stored === 'dark' || stored === 'light') return stored;
+    } catch {
+      /* ignore */
+    }
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      return 'dark';
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch {
+      /* ignore */
+    }
+  }, [theme]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -20,32 +47,50 @@ const FitnessWebsite = () => {
   };
 
   return (
-    <div className="fitness-website">
+    <div className="fitness-website" data-theme={theme}>
       {/* Navigation */}
       <nav className="navbar">
         <div className="nav-container">
-          <div className="logo">
+          <a
+            href="#home"
+            className="logo logo-link"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+            aria-label="White Water Method — home"
+          >
             <img
               src={logoSrc}
               alt=""
               className="logo-mark"
-              width={40}
-              height={40}
+              width={36}
+              height={36}
               decoding="async"
             />
             <span className="logo-text">White Water Method</span>
-          </div>
+          </a>
           <ul className="nav-menu">
-            <li><a href="#home" onClick={() => scrollToSection('home')} className={activeSection === 'home' ? 'active' : ''}>Home</a></li>
-            <li><a href="#assessment" onClick={() => scrollToSection('assessment')} className={activeSection === 'assessment' ? 'active' : ''}>Assessment</a></li>
             <li><a href="#about" onClick={() => scrollToSection('about')} className={activeSection === 'about' ? 'active' : ''}>About</a></li>
-            <li><a href="#how-we-help" onClick={() => scrollToSection('how-we-help')} className={activeSection === 'how-we-help' ? 'active' : ''}>How We Help</a></li>
-            <li><a href="#offer" onClick={() => scrollToSection('offer')} className={activeSection === 'offer' ? 'active' : ''}>What We Offer</a></li>
+            <li><a href="#how-we-help" onClick={() => scrollToSection('how-we-help')} className={activeSection === 'how-we-help' ? 'active' : ''}>How it works</a></li>
+            <li><a href="#offer" onClick={() => scrollToSection('offer')} className={activeSection === 'offer' ? 'active' : ''}>What we offer</a></li>
+            <li><a href="#transparency" onClick={() => scrollToSection('transparency')} className={activeSection === 'transparency' ? 'active' : ''}>Pricing</a></li>
             <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')} className={activeSection === 'testimonials' ? 'active' : ''}>Testimonials</a></li>
+            <li><a href="#contact" onClick={() => scrollToSection('contact')} className={activeSection === 'contact' ? 'active' : ''}>Contact</a></li>
           </ul>
-          <button className="cta-button" onClick={() => setShowAssessment(true)}>
-            Take the assessment
-          </button>
+          <div className="nav-actions">
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? 'Light' : 'Dark'}
+            </button>
+            <button className="cta-button" onClick={() => setShowAssessment(true)}>
+              Take the assessment
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -62,9 +107,10 @@ const FitnessWebsite = () => {
           />
           <h1 className="hero-title">START WITH YOUR FREE ASSESSMENT</h1>
           <p className="hero-subtitle">
-            Tell us where you are today—goals, schedule, limitations—and we&apos;ll map a path built for
-            swimmers, not generic gym programs. It takes a few minutes; when you&apos;re done, you can book
-            a call so we can align on next steps.
+            Complete the movement assessment first—you&apos;ll see a clear report of how mobility and
+            tightness may relate to your stroke. Pricing and what&apos;s included are on the site ($200/month
+            individual; teams from $500/month) so you arrive on the call already informed. Then book a
+            meeting to align on your goals and program fit.
           </p>
           <button className="hero-cta hero-cta-primary" onClick={() => setShowAssessment(true)}>
             Take the assessment
@@ -89,22 +135,6 @@ const FitnessWebsite = () => {
         </div>
       </section>
 
-      {/* Fitness Assessment — prioritized above the fold flow */}
-      <section id="assessment" className="assessment-section assessment-section-prominent">
-        <div className="section-container">
-          <p className="assessment-eyebrow">Lead with clarity</p>
-          <h2 className="section-title">Your assessment comes first</h2>
-          <p className="section-description assessment-lead">
-            Before we talk programming or pricing in depth, we use a short assessment to understand your
-            strengths, limitations, and what matters most in the water. That way every recommendation is
-            grounded in your reality—not a template.
-          </p>
-          <button className="assessment-button assessment-button-large" onClick={() => setShowAssessment(true)}>
-            Take the assessment
-          </button>
-        </div>
-      </section>
-
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="section-container">
@@ -116,31 +146,25 @@ const FitnessWebsite = () => {
             shoulder pain, technique issues, or performance plateaus—and design a program that 
             specifically addresses what YOU need to improve.
           </p>
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <button className="assessment-button" onClick={() => setShowAssessment(true)}>
-              Take the assessment
-            </button>
-          </div>
         </div>
       </section>
 
       {/* How We Help Section - Point A to Point B */}
       <section id="how-we-help" className="how-we-help-section">
         <div className="section-container">
-          <h2 className="section-title">How We Get You From Point A to Point B</h2>
+          <h2 className="section-title">How it works: point A to point B</h2>
           <p className="section-description">
-            Our problem-solving approach starts with understanding where you are and creating a clear, 
-            individualized path to where you want to be.
+            A simple three-step loop—assessment, targeted programming, and progression—so you always know
+            where you stand and what comes next.
           </p>
           <div className="process-steps">
             <div className="process-step">
               <div className="process-number">1</div>
               <div className="process-content">
-                <h3>Identify Your Specific Problems</h3>
+                <h3>Identify movement issues</h3>
                 <p>
-                  Through detailed movement assessment and conversation, we identify exactly what's 
-                  limiting your performance. Is it shoulder mobility? Core instability? Muscle imbalances? 
-                  We find the root cause, not just the symptoms.
+                  We identify possible physiological movement issues that may be hindering technique,
+                  diminishing force output, and causing aches or pains.
                 </p>
               </div>
             </div>
@@ -148,11 +172,10 @@ const FitnessWebsite = () => {
             <div className="process-step">
               <div className="process-number">2</div>
               <div className="process-content">
-                <h3>Design Your Personalized Program</h3>
+                <h3>Build your program</h3>
                 <p>
-                  No cookie-cutter workouts. Your program is built specifically to address YOUR 
-                  identified issues and move YOU toward YOUR goals. Every exercise is chosen for 
-                  a purpose, based on anatomy, movement science, and your individual needs.
+                  We create a program to improve current movement issues to alleviate discomfort, improve
+                  efficiency in the water, and ultimately facilitate faster swimming.
                 </p>
               </div>
             </div>
@@ -160,19 +183,13 @@ const FitnessWebsite = () => {
             <div className="process-step">
               <div className="process-number">3</div>
               <div className="process-content">
-                <h3>Track Progress & Adjust</h3>
+                <h3>Progress with you</h3>
                 <p>
-                  As you progress, we continuously assess and refine your program. What worked 
-                  last month might need adjustment next month. Your program evolves with you, 
-                  ensuring you're always moving toward your goals.
+                  We continue to build on each program so each swimmer keeps improving according to their
+                  skill level and physiological needs—no matter the goal.
                 </p>
               </div>
             </div>
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <button className="assessment-button" onClick={() => setShowAssessment(true)}>
-              Take the assessment
-            </button>
           </div>
         </div>
       </section>
@@ -183,7 +200,8 @@ const FitnessWebsite = () => {
           <h2 className="section-title">What We Offer</h2>
           <p className="section-description offer-section-lead">
             Individual and team training for swimmers. Expand a card for what&apos;s included, how it works,
-            and monthly pricing—start with the assessment so we can recommend the right fit.
+            and monthly pricing. Complete the assessment first so recommendations match your movement
+            profile; the call is for alignment and next steps—not a pricing ambush.
           </p>
           <div className="offer-grid">
             <div 
@@ -298,34 +316,65 @@ const FitnessWebsite = () => {
         </div>
       </section>
 
+      <section id="transparency" className="transparency-section">
+        <div className="section-container">
+          <h2 className="section-title">Pricing &amp; transparency</h2>
+          <p className="section-description transparency-lead">
+            We want you fully informed before the call: what the program is, what benefits to expect, and
+            what it costs. No hidden fees—just clear options so you can decide if White Water Method fits.
+          </p>
+          <ul className="transparency-list">
+            <li>
+              <strong>What you get:</strong> Swim-specific strength, mobility, and conditioning—not a generic
+              gym template—with progression and support tailored after your assessment.
+            </li>
+            <li>
+              <strong>Benefits:</strong> Better movement quality in the water, reduced nagging pain from
+              compensations, and training that respects pool schedule and your event focus.
+            </li>
+            <li>
+              <strong>Cost:</strong> Individual programming is <strong>$200/month</strong>. Team programs
+              start at <strong>$500/month per team</strong> depending on roster size and scope (details in
+              the cards above).
+            </li>
+            <li>
+              <strong>After the assessment:</strong> Book a meeting to review your report, confirm fit,
+              and onboard—already knowing the investment and what&apos;s included.
+            </li>
+          </ul>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section id="testimonials" className="testimonials-section">
         <div className="section-container">
           <h2 className="section-title">Testimonials</h2>
-          <div className="testimonials-grid">
+          <div className="testimonials-grid testimonials-grid--two">
             <div className="testimonial-card">
-              <div className="testimonial-avatar">JD</div>
+              <div className="testimonial-avatar">CG</div>
               <p className="testimonial-text">
-                "The personalized program helped me recover from my shoulder injury and 
-                get back to training stronger than ever."
+                I chose the White Water Method because I wanted a gym program specifically tailored to
+                swimming and my unique needs. Knowing that Carlos has firsthand experience as an elite
+                athlete gave me confidence in his approach. He designed a program that targeted my
+                limitations, and within just one month, I saw noticeable improvements in the water and out
+                of the water. Beyond the gym, Carlos provided advice on recovery and nutrition. I highly
+                recommend this program to any swimmer looking for a personalized and results-driven program.
               </p>
-              <p className="testimonial-author">- John D.</p>
+              <p className="testimonial-author">Carla Gonzalez — Venezuelan National Team</p>
             </div>
             <div className="testimonial-card">
-              <div className="testimonial-avatar">SM</div>
+              <div className="testimonial-avatar">KN</div>
               <p className="testimonial-text">
-                "I've seen incredible improvements in my strength and technique. The 
-                program is challenging but achievable."
+                I highly recommend the White Water Method physical preparation program. As a Master swimmer,
+                I have personally followed this program and experienced its benefits firsthand. What stands
+                out is its well-structured approach, combining strength, mobility, and sport-specific
+                conditioning in a very effective way. The program does an excellent job of balancing
+                intensity with proper technique. The sessions are engaging, progressive, and adaptable,
+                making them ideal for athletes at different stages, including Master swimmers. Overall, the
+                White Water Method is a professional, results-driven program that I would confidently
+                recommend to any swimmer or athlete looking to elevate their physical preparation.
               </p>
-              <p className="testimonial-author">- Sarah M.</p>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-avatar">MR</div>
-              <p className="testimonial-text">
-                "The best investment I've made in my fitness journey. The support and 
-                guidance are unmatched."
-              </p>
-              <p className="testimonial-author">- Mike R.</p>
+              <p className="testimonial-author">Kurt Niehaus — KN Swim Academy</p>
             </div>
           </div>
         </div>
@@ -334,14 +383,15 @@ const FitnessWebsite = () => {
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <div className="section-container">
-          <h2 className="section-title">CONTACT US</h2>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <button className="assessment-button" onClick={() => setShowAssessment(true)}>
-              Take the assessment
-            </button>
-          </div>
+          <h2 className="section-title">Contact</h2>
+          <p className="contact-email-line">
+            <a className="contact-email" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
+            </a>
+          </p>
+          <p className="contact-email-hint">Questions, newsletter, and general inquiries—same address.</p>
           <div className="newsletter-section">
-            <h3 className="newsletter-title">Stay Updated</h3>
+            <h3 className="newsletter-title">Stay updated</h3>
             <p className="newsletter-description">Subscribe to our newsletter for training tips, updates, and exclusive content.</p>
             <form className="newsletter-form" onSubmit={(e) => {
               e.preventDefault();
@@ -360,7 +410,10 @@ const FitnessWebsite = () => {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 by White Water Method. All Rights Reserved.</p>
+        <p className="footer-line">© 2026 White Water Method. All rights reserved.</p>
+        <p className="footer-email">
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </p>
       </footer>
 
       {/* Calendly Modal */}
@@ -378,8 +431,9 @@ const FitnessWebsite = () => {
         <div className="modal-overlay" onClick={() => setShowAssessment(false)}>
           <div className="modal-content assessment-modal" onClick={(e) => e.stopPropagation()}>
             <button className="close-modal" onClick={() => setShowAssessment(false)}>×</button>
-            <FitnessAssessment 
-              onClose={() => setShowAssessment(false)} 
+            <FitnessAssessment
+              theme={theme}
+              onClose={() => setShowAssessment(false)}
               onBookConsultation={() => setShowCalendly(true)}
             />
           </div>
