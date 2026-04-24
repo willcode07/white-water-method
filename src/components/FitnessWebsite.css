@@ -162,15 +162,21 @@
 }
 
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   color: var(--w-fg);
   border: 1px solid var(--w-border);
-  padding: 0.4rem 0.55rem;
+  padding: 0.45rem;
   border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle__icon {
+  display: block;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
