@@ -575,6 +575,35 @@ section {
   text-align: center;
 }
 
+.assessment-section-prominent {
+  background: linear-gradient(180deg, #f4f6f9 0%, #ffffff 100%);
+  border-top: 1px solid #e8eaef;
+  border-bottom: 1px solid #e8eaef;
+  padding: 5rem 2rem;
+}
+
+.assessment-section-prominent .section-title {
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.assessment-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5a6578;
+  margin-bottom: 1rem;
+}
+
+.assessment-lead {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .assessment-section .section-title,
 .assessment-section .section-description {
   color: #1a1a1a;
@@ -598,6 +627,35 @@ section {
 .assessment-button:hover {
   background: #333;
   opacity: 0.95;
+}
+
+.assessment-button-large {
+  padding: 1.15rem 2.25rem;
+  font-size: 1.05rem;
+  margin-top: 1.75rem;
+}
+
+.hero-cta-primary {
+  padding: 1.1rem 2.25rem;
+  font-size: 1.05rem;
+}
+
+.offer-cta-group-single {
+  flex-direction: column;
+}
+
+.offer-cta-group-single .offer-primary-cta {
+  flex: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .offer-section .offer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    max-width: 56rem;
+  }
 }
 
 /* Testimonials Section */

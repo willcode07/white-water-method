@@ -37,14 +37,14 @@ const FitnessWebsite = () => {
           </div>
           <ul className="nav-menu">
             <li><a href="#home" onClick={() => scrollToSection('home')} className={activeSection === 'home' ? 'active' : ''}>Home</a></li>
+            <li><a href="#assessment" onClick={() => scrollToSection('assessment')} className={activeSection === 'assessment' ? 'active' : ''}>Assessment</a></li>
             <li><a href="#about" onClick={() => scrollToSection('about')} className={activeSection === 'about' ? 'active' : ''}>About</a></li>
             <li><a href="#how-we-help" onClick={() => scrollToSection('how-we-help')} className={activeSection === 'how-we-help' ? 'active' : ''}>How We Help</a></li>
             <li><a href="#offer" onClick={() => scrollToSection('offer')} className={activeSection === 'offer' ? 'active' : ''}>What We Offer</a></li>
-            <li><a href="#assessment" onClick={() => { setShowAssessment(true); scrollToSection('assessment'); }} className={activeSection === 'assessment' ? 'active' : ''}>Assessment</a></li>
             <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')} className={activeSection === 'testimonials' ? 'active' : ''}>Testimonials</a></li>
           </ul>
-          <button className="cta-button" onClick={() => setShowCalendly(true)}>
-            Get Started
+          <button className="cta-button" onClick={() => setShowAssessment(true)}>
+            Take the assessment
           </button>
         </div>
       </nav>
@@ -60,14 +60,14 @@ const FitnessWebsite = () => {
             height={320}
             decoding="async"
           />
-          <h1 className="hero-title">NOT ANOTHER GENERIC STRENGTH PROGRAM</h1>
+          <h1 className="hero-title">START WITH YOUR FREE ASSESSMENT</h1>
           <p className="hero-subtitle">
-            We solve your specific swimming problems. From painful shoulders to technique breakdowns, 
-            we identify what's holding you back and create a personalized program to get you from where 
-            you are to where you need to be.
+            Tell us where you are today—goals, schedule, limitations—and we&apos;ll map a path built for
+            swimmers, not generic gym programs. It takes a few minutes; when you&apos;re done, you can book
+            a call so we can align on next steps.
           </p>
-          <button className="hero-cta" onClick={() => setShowCalendly(true)}>
-            Get Your Personalized Solution
+          <button className="hero-cta hero-cta-primary" onClick={() => setShowAssessment(true)}>
+            Take the assessment
           </button>
         </div>
         <div className="hero-images">
@@ -89,6 +89,22 @@ const FitnessWebsite = () => {
         </div>
       </section>
 
+      {/* Fitness Assessment — prioritized above the fold flow */}
+      <section id="assessment" className="assessment-section assessment-section-prominent">
+        <div className="section-container">
+          <p className="assessment-eyebrow">Lead with clarity</p>
+          <h2 className="section-title">Your assessment comes first</h2>
+          <p className="section-description assessment-lead">
+            Before we talk programming or pricing in depth, we use a short assessment to understand your
+            strengths, limitations, and what matters most in the water. That way every recommendation is
+            grounded in your reality—not a template.
+          </p>
+          <button className="assessment-button assessment-button-large" onClick={() => setShowAssessment(true)}>
+            Take the assessment
+          </button>
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="section-container">
@@ -101,8 +117,8 @@ const FitnessWebsite = () => {
             specifically addresses what YOU need to improve.
           </p>
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <button className="assessment-button" onClick={() => setShowCalendly(true)}>
-              Get Started
+            <button className="assessment-button" onClick={() => setShowAssessment(true)}>
+              Take the assessment
             </button>
           </div>
         </div>
@@ -155,7 +171,7 @@ const FitnessWebsite = () => {
           </div>
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <button className="assessment-button" onClick={() => setShowAssessment(true)}>
-              Start Your Assessment
+              Take the assessment
             </button>
           </div>
         </div>
@@ -166,8 +182,8 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">What We Offer</h2>
           <p className="section-description offer-section-lead">
-            Custom programming for swimmers and teams. Expand a card for what&apos;s included, how it
-            works, and pricing—then book a consultation or start with an assessment.
+            Individual and team training for swimmers. Expand a card for what&apos;s included, how it works,
+            and monthly pricing—start with the assessment so we can recommend the right fit.
           </p>
           <div className="offer-grid">
             <div 
@@ -198,8 +214,8 @@ const FitnessWebsite = () => {
                     <div className="offer-detail-section">
                       <h4>How it works</h4>
                       <ol>
-                        <li>Consultation to align on problems and goals</li>
-                        <li>Movement and fitness assessment</li>
+                        <li>Take the assessment so we understand your starting point</li>
+                        <li>Book a call to align on problems, goals, and program fit</li>
                         <li>Your personalized program is delivered</li>
                         <li>Ongoing check-ins and adjustments</li>
                       </ol>
@@ -207,27 +223,18 @@ const FitnessWebsite = () => {
                   </div>
                   <div className="offer-detail-section offer-detail-investment">
                     <h4>Investment</h4>
-                    <p className="offer-price">From $XXX / month</p>
-                    <p className="offer-price-note">Final rate depends on intensity and support level.</p>
+                    <p className="offer-price">$200 / month</p>
+                    <p className="offer-price-note">Individual programming and support.</p>
                   </div>
-                  <div className="offer-cta-group">
-                    <button 
-                      className="offer-primary-cta" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowCalendly(true);
-                      }}
-                    >
-                      Schedule Consultation
-                    </button>
-                    <button 
-                      className="offer-secondary-cta" 
+                  <div className="offer-cta-group offer-cta-group-single">
+                    <button
+                      className="offer-primary-cta"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowAssessment(true);
                       }}
                     >
-                      Take Assessment First
+                      Take the assessment
                     </button>
                   </div>
                 </div>
@@ -261,8 +268,8 @@ const FitnessWebsite = () => {
                     <div className="offer-detail-section">
                       <h4>How it works</h4>
                       <ol>
-                        <li>Consultation on team issues, roster, and schedule</li>
-                        <li>Assessments to map group and individual needs</li>
+                        <li>Team lead completes the assessment and shares roster context</li>
+                        <li>Book a call to scope program depth, schedule, and age groups</li>
                         <li>Custom program design and staff walkthrough</li>
                         <li>Ongoing support and seasonal adjustments</li>
                       </ol>
@@ -270,177 +277,24 @@ const FitnessWebsite = () => {
                   </div>
                   <div className="offer-detail-section offer-detail-investment">
                     <h4>Investment</h4>
-                    <p className="offer-price">From $XXX / month per team</p>
-                    <p className="offer-price-note">Based on roster size and program scope.</p>
+                    <p className="offer-price">From $500 / month per team</p>
+                    <p className="offer-price-note">Final rate depends on team size and program scope.</p>
                   </div>
-                  <div className="offer-cta-group">
-                    <button 
-                      className="offer-primary-cta" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowCalendly(true);
-                      }}
-                    >
-                      Schedule Team Consultation
-                    </button>
-                    <button 
-                      className="offer-secondary-cta" 
+                  <div className="offer-cta-group offer-cta-group-single">
+                    <button
+                      className="offer-primary-cta"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowAssessment(true);
                       }}
                     >
-                      Learn More
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div 
-              className={`offer-card ${expandedOffer === 'injury' ? 'expanded' : ''}`}
-              onClick={() => setExpandedOffer(expandedOffer === 'injury' ? null : 'injury')}
-            >
-              <div className="offer-card-header">
-                <div className="offer-icon">🩺</div>
-                <div className="offer-header-content">
-                  <h3>Injury Recovery</h3>
-                  <p>Rehab and return-to-swim planning, coordinated with your care team when appropriate.</p>
-                </div>
-                <div className="expand-icon">{expandedOffer === 'injury' ? '−' : '+'}</div>
-              </div>
-              {expandedOffer === 'injury' && (
-                <div className="offer-details">
-                  <div className="offer-details-grid">
-                    <div className="offer-detail-section">
-                      <h4>What&apos;s included</h4>
-                      <ul>
-                        <li>Injury-specific rehab progression</li>
-                        <li>Coordination with your providers when needed</li>
-                        <li>Gradual return-to-training plan</li>
-                        <li>Movement quality and re-injury prevention</li>
-                        <li>Priority messaging for faster turnaround</li>
-                      </ul>
-                    </div>
-                    <div className="offer-detail-section">
-                      <h4>How it works</h4>
-                      <ol>
-                        <li>Consultation, goals, and medical history review</li>
-                        <li>Custom rehab program for your injury and stage</li>
-                        <li>Check-ins to progress load safely</li>
-                        <li>Build back to full training and competition</li>
-                      </ol>
-                    </div>
-                  </div>
-                  <div className="offer-detail-section offer-detail-investment">
-                    <h4>Investment</h4>
-                    <p className="offer-price">From $XXX / month</p>
-                    <p className="offer-price-note">Varies with injury complexity and timeline.</p>
-                  </div>
-                  <div className="offer-cta-group">
-                    <button 
-                      className="offer-primary-cta" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowCalendly(true);
-                      }}
-                    >
-                      Schedule Recovery Consultation
-                    </button>
-                    <button 
-                      className="offer-secondary-cta" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowAssessment(true);
-                      }}
-                    >
-                      Start Assessment
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div 
-              className={`offer-card ${expandedOffer === 'performance' ? 'expanded' : ''}`}
-              onClick={() => setExpandedOffer(expandedOffer === 'performance' ? null : 'performance')}
-            >
-              <div className="offer-card-header">
-                <div className="offer-icon">🏆</div>
-                <div className="offer-header-content">
-                  <h3>Performance Optimization</h3>
-                  <p>Elite strength, periodization, and peaking aligned to your competition calendar.</p>
-                </div>
-                <div className="expand-icon">{expandedOffer === 'performance' ? '−' : '+'}</div>
-              </div>
-              {expandedOffer === 'performance' && (
-                <div className="offer-details">
-                  <div className="offer-details-grid">
-                    <div className="offer-detail-section">
-                      <h4>What&apos;s included</h4>
-                      <ul>
-                        <li>Strength and power development for your events</li>
-                        <li>Meet-calendar periodization and peaking</li>
-                        <li>Technique and recovery protocols</li>
-                        <li>Mental performance tools where useful</li>
-                        <li>Priority updates and fast program turns</li>
-                      </ul>
-                    </div>
-                    <div className="offer-detail-section">
-                      <h4>How it works</h4>
-                      <ol>
-                        <li>Performance assessment and goal setting</li>
-                        <li>Review training load and competition schedule</li>
-                        <li>Periodized plan tied to key meets</li>
-                        <li>Weekly adjustments from training feedback and data</li>
-                        <li>Peaking strategy for championship targets</li>
-                      </ol>
-                    </div>
-                  </div>
-                  <div className="offer-detail-section offer-detail-investment">
-                    <h4>Investment</h4>
-                    <p className="offer-price">From $XXX / month</p>
-                    <p className="offer-price-note">Premium tier for elite support and programming depth.</p>
-                  </div>
-                  <div className="offer-cta-group">
-                    <button 
-                      className="offer-primary-cta" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowCalendly(true);
-                      }}
-                    >
-                      Schedule Performance Consultation
-                    </button>
-                    <button 
-                      className="offer-secondary-cta" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowAssessment(true);
-                      }}
-                    >
-                      Take Performance Assessment
+                      Take the assessment
                     </button>
                   </div>
                 </div>
               )}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Fitness Assessment Section */}
-      <section id="assessment" className="assessment-section">
-        <div className="section-container">
-          <h2 className="section-title">Identify Your Starting Point</h2>
-          <p className="section-description">
-            Our assessment helps us understand exactly where you are right now—your strengths, 
-            limitations, and specific areas that need attention. This is the first step in creating 
-            your personalized solution.
-          </p>
-          <button className="assessment-button" onClick={() => setShowAssessment(true)}>
-            Start Your Assessment
-          </button>
         </div>
       </section>
 
@@ -482,8 +336,8 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">CONTACT US</h2>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <button className="assessment-button" onClick={() => setShowCalendly(true)}>
-              Book Consultation
+            <button className="assessment-button" onClick={() => setShowAssessment(true)}>
+              Take the assessment
             </button>
           </div>
           <div className="newsletter-section">
@@ -506,7 +360,7 @@ const FitnessWebsite = () => {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2024 by White Water Method. All Rights Reserved.</p>
+        <p>© 2026 by White Water Method. All Rights Reserved.</p>
       </footer>
 
       {/* Calendly Modal */}

@@ -172,7 +172,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation }) => {
                   setTimeout(() => onBookConsultation(), 300);
                 }
               }}>
-                Book Consultation to Get Started
+                Book a meeting
               </button>
               <button className="secondary-button" onClick={() => {
                 setStep(1);
