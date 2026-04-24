@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/white-water-method/static/css/main.f1751155.css",
-    "main.js": "/white-water-method/static/js/main.c6cef6ff.js",
+    "main.css": "/white-water-method/static/css/main.a515d87f.css",
+    "main.js": "/white-water-method/static/js/main.83d6145c.js",
     "static/js/453.193533f3.chunk.js": "/white-water-method/static/js/453.193533f3.chunk.js",
     "index.html": "/white-water-method/index.html",
-    "main.f1751155.css.map": "/white-water-method/static/css/main.f1751155.css.map",
-    "main.c6cef6ff.js.map": "/white-water-method/static/js/main.c6cef6ff.js.map",
+    "main.a515d87f.css.map": "/white-water-method/static/css/main.a515d87f.css.map",
+    "main.83d6145c.js.map": "/white-water-method/static/js/main.83d6145c.js.map",
     "453.193533f3.chunk.js.map": "/white-water-method/static/js/453.193533f3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1751155.css",
-    "static/js/main.c6cef6ff.js"
+    "static/css/main.a515d87f.css",
+    "static/js/main.83d6145c.js"
   ]
 }
