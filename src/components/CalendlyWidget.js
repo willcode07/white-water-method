@@ -1,51 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import './CalendlyWidget.css';
 
 const CalendlyWidget = () => {
-  const [calendlyUrl] = useState(
-    process.env.REACT_APP_CALENDLY_URL || 'https://calendly.com/your-username/consultation'
+  const acuityUrl = useMemo(
+    () =>
+      process.env.REACT_APP_ACUITY_URL ||
+      'https://app.acuityscheduling.com/schedule.php?owner=00000000',
+    []
   );
 
-  useEffect(() => {
-    // Check if Calendly script is already loaded
-    if (document.querySelector('script[src*="calendly.com"]')) {
-      return;
-    }
-
-    // Load Calendly script
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Load Calendly CSS
-    const link = document.createElement('link');
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-
-    return () => {
-      // Cleanup
-      const scriptElement = document.querySelector('script[src*="calendly.com"]');
-      const linkElement = document.querySelector('link[href*="calendly.com"]');
-      if (scriptElement) document.body.removeChild(scriptElement);
-      if (linkElement) document.head.removeChild(linkElement);
-    };
-  }, []);
-
-  const showNote = calendlyUrl.includes('your-username');
+  const showNote = acuityUrl.includes('owner=00000000');
 
   return (
     <div className="calendly-widget">
-      <div 
-        className="calendly-inline-widget" 
-        data-url={calendlyUrl}
+      <iframe
+        title="Schedule your consultation"
+        className="calendly-inline-widget"
+        src={acuityUrl}
+        frameBorder="0"
         style={{ minWidth: '320px', height: '700px' }}
       />
       {showNote && (
         <p className="calendly-note">
-          <strong>Setup Required:</strong> Replace "your-username" with your actual Calendly username.
-          You can set this by creating a <code>.env</code> file with <code>REACT_APP_CALENDLY_URL=https://calendly.com/your-actual-username/consultation</code>
+          <strong>Setup Required:</strong> Replace the Acuity owner placeholder in the URL.
+          You can set this by creating a <code>.env</code> file with{' '}
+          <code>REACT_APP_ACUITY_URL=https://app.acuityscheduling.com/schedule.php?owner=YOUR_OWNER_ID</code>{' '}
           or update the URL directly in <code>CalendlyWidget.js</code>
         </p>
       )}
