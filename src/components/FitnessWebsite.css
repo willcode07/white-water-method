@@ -205,11 +205,11 @@
 /* Hero Section */
 .hero-section {
   margin-top: 58px;
-  padding: 8rem 2rem 6rem;
+  padding: 7rem 2rem 5rem;
   background: var(--w-bg);
   color: var(--w-fg);
   text-align: center;
-  min-height: 85vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -219,7 +219,7 @@
 
 .hero-content {
   max-width: 900px;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .hero-logo {
@@ -273,7 +273,7 @@
   max-width: 1200px;
   width: 100%;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 3rem;
   flex-wrap: wrap;
 }
 
@@ -294,7 +294,7 @@
 
 /* Section Styles */
 section {
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
   scroll-margin-top: 4.5rem;
 }
 
@@ -319,7 +319,7 @@ section {
   text-align: center;
   color: var(--w-muted);
   max-width: 800px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2.25rem;
   line-height: 1.7;
   font-weight: 400;
 }
@@ -327,13 +327,13 @@ section {
 /* About Section */
 .about-section {
   background: var(--w-bg);
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
 }
 
 /* How We Help Section */
 .how-we-help-section {
   background: var(--w-bg-alt);
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
 }
 
 .process-steps {
@@ -341,7 +341,7 @@ section {
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 2.5rem;
   flex-wrap: wrap;
 }
 
@@ -711,7 +711,8 @@ section {
 /* Testimonials Section */
 .testimonials-section {
   background: var(--w-bg);
-  padding-bottom: 3.5rem;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
 }
 
 .testimonials-grid {
@@ -767,7 +768,7 @@ section {
 /* Transparency */
 .transparency-section {
   background: var(--w-bg-alt);
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
 }
 
 .transparency-lead {
@@ -792,61 +793,22 @@ section {
   color: var(--w-fg);
 }
 
-/* Contact Section */
-.contact-section {
+.join-section {
   background: var(--w-bg);
-  padding-top: 3rem;
-  padding-bottom: 1.5rem;
-}
-
-.contact-section .section-title {
-  margin-bottom: 0.75rem;
-}
-
-.contact-email-line {
-  text-align: center;
-  margin: 0 0 0.35rem;
-}
-
-.contact-email {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--w-fg);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.contact-email:hover {
-  opacity: 0.85;
-}
-
-.contact-email-hint {
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--w-muted);
-  margin: 0 auto 1.75rem;
-  max-width: 26rem;
-  line-height: 1.5;
+  padding-top: 4.5rem;
+  padding-bottom: 3.75rem;
 }
 
 .newsletter-section {
-  max-width: 600px;
+  max-width: 760px;
   margin: 0 auto;
   text-align: center;
-}
-
-.newsletter-title {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--w-fg);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.2px;
 }
 
 .newsletter-description {
   font-size: 1rem;
   color: var(--w-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   line-height: 1.6;
 }
 
@@ -1011,8 +973,8 @@ section {
   }
 
   .hero-section {
-    padding: 5rem 1.5rem 4rem;
-    min-height: 75vh;
+    padding: 4.75rem 1.5rem 3.25rem;
+    min-height: auto;
   }
 
   .hero-logo {
@@ -1041,7 +1003,7 @@ section {
   }
 
   section {
-    padding: 4rem 1.5rem;
+    padding: 3.5rem 1.5rem;
   }
 
   .section-title {

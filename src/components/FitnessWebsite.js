@@ -114,7 +114,7 @@ const FitnessWebsite = () => {
             <li><a href="#offer" onClick={() => scrollToSection('offer')} className={activeSection === 'offer' ? 'active' : ''}>What we offer</a></li>
             <li><a href="#transparency" onClick={() => scrollToSection('transparency')} className={activeSection === 'transparency' ? 'active' : ''}>Pricing</a></li>
             <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')} className={activeSection === 'testimonials' ? 'active' : ''}>Testimonials</a></li>
-            <li><a href="#contact" onClick={() => scrollToSection('contact')} className={activeSection === 'contact' ? 'active' : ''}>Contact</a></li>
+            <li><a href="#join" onClick={() => scrollToSection('join')} className={activeSection === 'join' ? 'active' : ''}>Stay Updated</a></li>
           </ul>
           <div className="nav-actions">
             <button
@@ -418,22 +418,13 @@ const FitnessWebsite = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="contact-section">
+      <section id="join" className="join-section">
         <div className="section-container">
-          <h2 className="section-title">Contact</h2>
-          <p className="contact-email-line">
-            <a className="contact-email" href={`mailto:${CONTACT_EMAIL}`}>
-              {CONTACT_EMAIL}
-            </a>
-          </p>
-          <p className="contact-email-hint">Questions, newsletter, and general inquiries—same address.</p>
+          <h2 className="section-title">Stay Updated</h2>
           <div className="newsletter-section">
-            <h3 className="newsletter-title">Stay updated</h3>
             <p className="newsletter-description">Subscribe to our newsletter for training tips, updates, and exclusive content.</p>
             <form className="newsletter-form" onSubmit={(e) => {
               e.preventDefault();
-              // In a real app, you would submit the form data to a backend
               alert('Thank you for subscribing to our newsletter!');
             }}>
               <div className="newsletter-input-group">
