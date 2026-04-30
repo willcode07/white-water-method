@@ -146,13 +146,23 @@ const FitnessWebsite = () => {
           <h1 className="hero-title">START WITH YOUR FREE ASSESSMENT</h1>
           <p className="hero-subtitle">
             Complete the movement assessment first—you&apos;ll see a clear report of how mobility and
-            tightness may relate to your stroke. Pricing and what&apos;s included are on the site ($200/month
-            individual; teams from $500/month) so you arrive on the call already informed. Then book a
-            meeting to align on your goals and program fit.
+            tightness may relate to your stroke. Then book a meeting to align on your goals and program
+            fit.
           </p>
-          <button className="hero-cta hero-cta-primary" onClick={() => setShowAssessment(true)}>
-            Take the assessment
-          </button>
+          <div className="hero-cta-group">
+            <button
+              className="hero-cta hero-cta-primary"
+              onClick={() => setShowAssessment(true)}
+            >
+              Take the assessment
+            </button>
+            <button
+              className="hero-cta hero-cta-secondary"
+              onClick={() => setShowCalendly(true)}
+            >
+              Book a meeting
+            </button>
+          </div>
         </div>
         <div className="hero-images">
           <img 

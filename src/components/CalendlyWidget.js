@@ -5,7 +5,7 @@ const CalendlyWidget = () => {
   const acuityUrl = useMemo(
     () =>
       process.env.REACT_APP_ACUITY_URL ||
-      'https://app.acuityscheduling.com/schedule.php?owner=00000000',
+      'https://app.acuityscheduling.com/schedule.php?owner=33240484',
     []
   );
 

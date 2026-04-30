@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './FitnessAssessment.css';
 
 const STROKES = ['Butterfly', 'Backstroke', 'Breaststroke', 'Freestyle'];
@@ -10,6 +10,58 @@ const initialContact = {
   phone: '',
   country: '',
   strokes: [],
+};
+
+const ASSESSMENT_VIDEO_BASE = `${process.env.PUBLIC_URL || ''}/assessment-videos`;
+const movementVideoMap = {
+  'thoracic-extension': {
+    label: 'Thoracic extension demo video',
+    sources: [
+      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-extension.mp4`, type: 'video/mp4' },
+      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-extension.mov`, type: 'video/quicktime' },
+    ],
+  },
+  'thoracic-rotation': {
+    label: 'Thoracic rotation demo video',
+    sources: [
+      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-rotation.mp4`, type: 'video/mp4' },
+      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-rotation.mov`, type: 'video/quicktime' },
+    ],
+  },
+  'hip-internal-rotation': {
+    label: 'Hip internal rotation demo video',
+    sources: [
+      { src: `${ASSESSMENT_VIDEO_BASE}/hip-internal-rotation.mp4`, type: 'video/mp4' },
+      { src: `${ASSESSMENT_VIDEO_BASE}/hip-internal-rotation.mov`, type: 'video/quicktime' },
+    ],
+  },
+  'shoulder-external': {
+    label: 'Shoulder external rotation demo video',
+    sources: [
+      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-external-rotation.mp4`, type: 'video/mp4' },
+      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-external-rotation.mov`, type: 'video/quicktime' },
+    ],
+  },
+  'shoulder-internal': {
+    label: 'Shoulder internal rotation demo video',
+    sources: [
+      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-internal-rotation.mp4`, type: 'video/mp4' },
+      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-internal-rotation.mov`, type: 'video/quicktime' },
+    ],
+  },
+  'pelvic-tilt': {
+    label: 'Pelvic tilt demo video',
+    sources: [
+      { src: `${ASSESSMENT_VIDEO_BASE}/pelvic-tilt.mp4`, type: 'video/mp4' },
+      { src: `${ASSESSMENT_VIDEO_BASE}/pelvic-tilt.mov`, type: 'video/quicktime' },
+    ],
+  },
+};
+
+const regionStatusLabel = {
+  green: 'Good',
+  amber: 'Concerning',
+  red: 'Poor',
 };
 
 function buildReport(answers) {
@@ -132,6 +184,15 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
   return rows;
 }
 
+function getRegionStatus(rows, keys) {
+  const scoped = rows.filter((row) => keys.includes(row.key));
+  if (!scoped.length) return 'amber';
+  const passCount = scoped.filter((row) => row.status === 'pass').length;
+  if (passCount === scoped.length) return 'green';
+  if (passCount === 0) return 'red';
+  return 'amber';
+}
+
 const movementConfigs = [
   {
     slug: 'thoracic-extension',
@@ -225,6 +286,9 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
   const [contact, setContact] = useState(initialContact);
   const [answers, setAnswers] = useState({});
   const [contactErrors, setContactErrors] = useState({});
+  const [showAthleteSummary, setShowAthleteSummary] = useState(false);
+  const [showDetailedBreakdown, setShowDetailedBreakdown] = useState(false);
+  const movementVideoRef = useRef(null);
 
   const totalMovementSteps = movementConfigs.length;
   const progressPercent = useMemo(() => {
@@ -237,6 +301,30 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
     if (phase !== 'results') return [];
     return buildReport(answers);
   }, [phase, answers]);
+
+  const regionSummary = useMemo(() => {
+    if (phase !== 'results') return [];
+    return [
+      {
+        label: 'Thoracic Spine',
+        status: getRegionStatus(reportRows, ['thoracic-extension', 'thoracic-rotation']),
+      },
+      {
+        label: 'Shoulders',
+        status: getRegionStatus(reportRows, ['shoulder-external', 'shoulder-internal', 'tight-upper-traps']),
+      },
+      {
+        label: 'Pelvis & Hips',
+        status: getRegionStatus(reportRows, [
+          'pelvic-tilt',
+          'hip-internal-rotation',
+          'tight-hamstrings',
+          'tight-hip-flexors',
+          'tight-lower-back',
+        ]),
+      },
+    ];
+  }, [phase, reportRows]);
 
   const validateContact = () => {
     const err = {};
@@ -262,6 +350,44 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
   };
 
   const currentMovement = movementConfigs[movementIndex];
+  const currentVideo = currentMovement ? movementVideoMap[currentMovement.slug] : null;
+  const nextVideo = useMemo(() => {
+    if (phase !== 'movement' || movementIndex >= totalMovementSteps - 1) return null;
+    const nextMovement = movementConfigs[movementIndex + 1];
+    return movementVideoMap[nextMovement.slug] || null;
+  }, [movementIndex, phase, totalMovementSteps]);
+
+  useEffect(() => {
+    if (phase !== 'movement') return;
+    const videoEl = movementVideoRef.current;
+    if (!videoEl) return;
+    videoEl.currentTime = 0;
+    const playPromise = videoEl.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        // Autoplay can fail on some devices despite muted/inline settings.
+      });
+    }
+  }, [phase, movementIndex]);
+
+  useEffect(() => {
+    if (phase !== 'movement') return;
+    const preloadUrls = [
+      ...(currentVideo?.sources?.map((source) => source.src) || []),
+      ...(nextVideo?.sources?.map((source) => source.src) || []),
+    ];
+    const links = preloadUrls.map((url) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'video';
+      link.href = url;
+      document.head.appendChild(link);
+      return link;
+    });
+    return () => {
+      links.forEach((link) => link.remove());
+    };
+  }, [currentVideo, nextVideo, phase]);
 
   const canAdvanceMovement = () => {
     if (!currentMovement) return false;
@@ -324,6 +450,8 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
     setContact(initialContact);
     setAnswers({});
     setContactErrors({});
+    setShowAthleteSummary(false);
+    setShowDetailedBreakdown(false);
   };
 
   const mediaLabel = (slug) => {
@@ -342,12 +470,6 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
   return (
     <div className={`fitness-assessment fitness-assessment--theme-${theme}`}>
       <h2>White Water Method — Movement Assessment</h2>
-      <p className="fitness-assessment__lede">
-        Complete both parts to see your report on screen. For questions or to share results before a call,
-        email{' '}
-        <a href="mailto:whitewatermethod@gmail.com">whitewatermethod@gmail.com</a>
-        —nothing is sent automatically from this form until we connect it to email delivery.
-      </p>
 
       {phase !== 'results' && (
         <div className="progress-bar" aria-hidden="true">
@@ -462,7 +584,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
             </fieldset>
             <div className="assessment-form__actions">
               <button type="submit" className="primary-button">
-                Continue to movement screen
+                Continue
               </button>
             </div>
           </form>
@@ -475,10 +597,44 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
             Part 2 of 2 — Movement {movementIndex + 1} of {totalMovementSteps}
           </p>
           <div className="movement-screen">
-            <div className="movement-media" role="img" aria-label={mediaLabel(currentMovement.slug)}>
-              <span className="movement-media__label">{mediaLabel(currentMovement.slug)}</span>
-              <span className="movement-media__hint">Replace with your photo or GIF asset</span>
-            </div>
+            {currentMovement.type !== 'tightness' && (
+              <div className="movement-media">
+                {currentVideo ? (
+                  <>
+                    <video
+                      key={currentMovement.slug}
+                      ref={movementVideoRef}
+                      className={`movement-media__video ${
+                        currentMovement.slug === 'hip-internal-rotation'
+                          ? 'movement-media__video--hip-internal-rotation'
+                          : currentMovement.slug === 'shoulder-external'
+                            ? 'movement-media__video--shoulder-external'
+                            : ''
+                      }`}
+                      preload="metadata"
+                      muted
+                      playsInline
+                      loop
+                      autoPlay
+                      controls
+                      aria-label={currentVideo.label}
+                    >
+                      {currentVideo.sources.map((source) => (
+                        <source key={source.src} src={source.src} type={source.type} />
+                      ))}
+                    </video>
+                    <span className="movement-media__hint">
+                      Demo video loops while you complete this movement.
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="movement-media__label">{mediaLabel(currentMovement.slug)}</span>
+                    <span className="movement-media__hint">Add a movement demo video for this step.</span>
+                  </>
+                )}
+              </div>
+            )}
             <h3 className="movement-title">{currentMovement.title}</h3>
             {currentMovement.instructions.length > 0 && (
               <ol className="movement-instructions">
@@ -584,45 +740,73 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
       {phase === 'results' && (
         <div className="results-container">
           <p className="progress-text">Your report</p>
-          <h3>Assessment results</h3>
-          <p className="results-intro">
-            Here&apos;s how your self-check maps to common limitations in the water. Book a call when
-            you&apos;re ready—we&apos;ll walk through what this means for you and how the program
-            addresses it. Pricing and what&apos;s included are listed on the main site under What We
-            Offer ($200/month individual; team from $500/month). Questions?{' '}
-            <a href="mailto:whitewatermethod@gmail.com">whitewatermethod@gmail.com</a>
-          </p>
-
-          <div className="results-contact-summary">
-            <h4>Your submission</h4>
-            <p>
-              <strong>Name:</strong> {contact.firstName} {contact.lastName}
-            </p>
-            <p>
-              <strong>Email:</strong> {contact.email}
-            </p>
-            <p>
-              <strong>Phone:</strong> {contact.phone}
-            </p>
-            <p>
-              <strong>Country:</strong> {contact.country}
-            </p>
-            <p>
-              <strong>Primary strokes:</strong> {contact.strokes.join(', ')}
-            </p>
-          </div>
-
-          <div className="results-report">
-            {reportRows.map((row) => (
-              <article
-                key={row.key}
-                className={`result-block result-block--${row.status}`}
-              >
-                <h4>{row.title}</h4>
-                <p className="result-block__body">{row.body}</p>
-              </article>
+          <h3>Assessment Results</h3>
+          <div className="results-region-summary" aria-label="Body region summary">
+            {regionSummary.map((region) => (
+              <div key={region.label} className="results-region-summary__item">
+                <span className="results-region-summary__label">{region.label}</span>
+                <span
+                  className={`results-region-summary__status results-region-summary__status--${region.status}`}
+                  aria-label={`${region.label} status ${regionStatusLabel[region.status]}`}
+                >
+                  {regionStatusLabel[region.status]}
+                </span>
+              </div>
             ))}
           </div>
+
+          <button
+            type="button"
+            className="results-toggle"
+            onClick={() => setShowAthleteSummary((prev) => !prev)}
+            aria-expanded={showAthleteSummary}
+          >
+            <span>Athlete Info Summary</span>
+            <span>{showAthleteSummary ? '−' : '+'}</span>
+          </button>
+          {showAthleteSummary && (
+            <div className="results-contact-summary">
+              <h4>Your submission</h4>
+              <p>
+                <strong>Name:</strong> {contact.firstName} {contact.lastName}
+              </p>
+              <p>
+                <strong>Email:</strong> {contact.email}
+              </p>
+              <p>
+                <strong>Phone:</strong> {contact.phone}
+              </p>
+              <p>
+                <strong>Country:</strong> {contact.country}
+              </p>
+              <p>
+                <strong>Primary strokes:</strong> {contact.strokes.join(', ')}
+              </p>
+            </div>
+          )}
+
+          <button
+            type="button"
+            className="results-toggle"
+            onClick={() => setShowDetailedBreakdown((prev) => !prev)}
+            aria-expanded={showDetailedBreakdown}
+          >
+            <span>Detailed Breakdown</span>
+            <span>{showDetailedBreakdown ? '−' : '+'}</span>
+          </button>
+          {showDetailedBreakdown && (
+            <div className="results-report">
+              {reportRows.map((row) => (
+                <article
+                  key={row.key}
+                  className={`result-block result-block--${row.status}`}
+                >
+                  <h4>{row.title}</h4>
+                  <p className="result-block__body">{row.body}</p>
+                </article>
+              ))}
+            </div>
+          )}
 
           <div className="results-actions">
             <button
