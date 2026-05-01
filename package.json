@@ -13,13 +13,18 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "cloudinary": "^2.5.1",
+    "dotenv": "^16.4.5"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "upload-media": "node scripts/upload-media-cloudinary.js"
   },
   "eslintConfig": {
     "extends": [

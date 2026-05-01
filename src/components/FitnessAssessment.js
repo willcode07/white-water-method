@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './FitnessAssessment.css';
+import { getAssessmentVideo } from '../config/media';
 
 const STROKES = ['Butterfly', 'Backstroke', 'Breaststroke', 'Freestyle'];
 
@@ -10,52 +11,6 @@ const initialContact = {
   phone: '',
   country: '',
   strokes: [],
-};
-
-const ASSESSMENT_VIDEO_BASE = `${process.env.PUBLIC_URL || ''}/assessment-videos`;
-const movementVideoMap = {
-  'thoracic-extension': {
-    label: 'Thoracic extension demo video',
-    sources: [
-      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-extension.mp4`, type: 'video/mp4' },
-      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-extension.mov`, type: 'video/quicktime' },
-    ],
-  },
-  'thoracic-rotation': {
-    label: 'Thoracic rotation demo video',
-    sources: [
-      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-rotation.mp4`, type: 'video/mp4' },
-      { src: `${ASSESSMENT_VIDEO_BASE}/thoracic-rotation.mov`, type: 'video/quicktime' },
-    ],
-  },
-  'hip-internal-rotation': {
-    label: 'Hip internal rotation demo video',
-    sources: [
-      { src: `${ASSESSMENT_VIDEO_BASE}/hip-internal-rotation.mp4`, type: 'video/mp4' },
-      { src: `${ASSESSMENT_VIDEO_BASE}/hip-internal-rotation.mov`, type: 'video/quicktime' },
-    ],
-  },
-  'shoulder-external': {
-    label: 'Shoulder external rotation demo video',
-    sources: [
-      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-external-rotation.mp4`, type: 'video/mp4' },
-      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-external-rotation.mov`, type: 'video/quicktime' },
-    ],
-  },
-  'shoulder-internal': {
-    label: 'Shoulder internal rotation demo video',
-    sources: [
-      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-internal-rotation.mp4`, type: 'video/mp4' },
-      { src: `${ASSESSMENT_VIDEO_BASE}/shoulder-internal-rotation.mov`, type: 'video/quicktime' },
-    ],
-  },
-  'pelvic-tilt': {
-    label: 'Pelvic tilt demo video',
-    sources: [
-      { src: `${ASSESSMENT_VIDEO_BASE}/pelvic-tilt.mp4`, type: 'video/mp4' },
-      { src: `${ASSESSMENT_VIDEO_BASE}/pelvic-tilt.mov`, type: 'video/quicktime' },
-    ],
-  },
 };
 
 const regionStatusLabel = {
@@ -350,11 +305,11 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
   };
 
   const currentMovement = movementConfigs[movementIndex];
-  const currentVideo = currentMovement ? movementVideoMap[currentMovement.slug] : null;
+  const currentVideo = currentMovement ? getAssessmentVideo(currentMovement.slug) : null;
   const nextVideo = useMemo(() => {
     if (phase !== 'movement' || movementIndex >= totalMovementSteps - 1) return null;
     const nextMovement = movementConfigs[movementIndex + 1];
-    return movementVideoMap[nextMovement.slug] || null;
+    return getAssessmentVideo(nextMovement.slug);
   }, [movementIndex, phase, totalMovementSteps]);
 
   useEffect(() => {
