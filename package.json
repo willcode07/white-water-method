@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "cloudinary": "^2.5.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "gh-pages": "^6.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
