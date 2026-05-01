@@ -5,7 +5,7 @@ const CalendlyWidget = () => {
   const acuityUrl = useMemo(
     () =>
       process.env.REACT_APP_ACUITY_URL ||
-      'https://app.acuityscheduling.com/schedule.php?owner=33240484',
+      'https://app.acuityscheduling.com/schedule.php?owner=33240484&appointmentType=67811930',
     []
   );
 
@@ -24,7 +24,10 @@ const CalendlyWidget = () => {
         <p className="calendly-note">
           <strong>Setup Required:</strong> Replace the Acuity owner placeholder in the URL.
           You can set this by creating a <code>.env</code> file with{' '}
-          <code>REACT_APP_ACUITY_URL=https://app.acuityscheduling.com/schedule.php?owner=YOUR_OWNER_ID</code>{' '}
+          <code>
+            REACT_APP_ACUITY_URL=
+            {'https://app.acuityscheduling.com/schedule.php?owner=YOUR_OWNER_ID&appointmentType=YOUR_TYPE_ID'}
+          </code>{' '}
           or update the URL directly in <code>CalendlyWidget.js</code>
         </p>
       )}
