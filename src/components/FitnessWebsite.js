@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './FitnessWebsite.css';
 import FitnessAssessment from './FitnessAssessment';
 import CalendlyWidget from './CalendlyWidget';
-import { getHeroImages } from '../config/media';
-
-const heroImages = getHeroImages();
 
 const logoSrc = `${process.env.PUBLIC_URL || ''}/wwm-logo.png`;
 
@@ -168,15 +165,24 @@ const FitnessWebsite = () => {
           </div>
         </div>
         <div className="hero-images">
-          {heroImages.map((image) => (
-            <img
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
-              className="hero-image"
-              loading="lazy"
-            />
-          ))}
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80"
+            alt="Swimmer in action"
+            className="hero-image"
+            loading="lazy"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=400&h=300&fit=crop&q=80"
+            alt="Swimmer training"
+            className="hero-image"
+            loading="lazy"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop&q=80"
+            alt="Competitive swimmer diving"
+            className="hero-image"
+            loading="lazy"
+          />
         </div>
       </section>
 
