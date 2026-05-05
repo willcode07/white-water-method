@@ -59,9 +59,9 @@ const initialContact = {
 };
 
 const regionStatusLabel = {
-  green: 'Good',
-  amber: 'Concerning',
-  red: 'Poor',
+  green: 'Looking good',
+  amber: 'Mixed',
+  red: 'Needs attention',
 };
 
 function buildReport(answers) {
@@ -70,23 +70,23 @@ function buildReport(answers) {
   const ext = answers['thoracic-extension'];
   rows.push({
     key: 'thoracic-extension',
-    title: 'Thoracic Mobility — Extension',
+    title: 'Thoracic mobility: extension',
     status: ext === 'yes' ? 'pass' : 'fail',
     body:
       ext === 'yes'
-        ? 'PASS!'
-        : 'FAIL — Swimmer may struggle to maintain streamline position, and place unnecessary stress on shoulders (higher risk for shoulder pain). The swimmer’s strokes become shorter and less powerful, and breathing can throw off alignment.',
+        ? 'Pass!'
+        : 'Needs work: swimmers often struggle to hold a clean line, which can load the shoulders and shorten strokes. Breathing can also pull you out of alignment.',
   });
 
   const rot = answers['thoracic-rotation'];
   rows.push({
     key: 'thoracic-rotation',
-    title: 'Thoracic Mobility — Rotation',
+    title: 'Thoracic mobility: rotation',
     status: rot === 'yes' ? 'pass' : 'fail',
     body:
       rot === 'yes'
-        ? 'PASS!'
-        : 'FAIL — Swimmer may struggle with rotation in their strokes, especially backstroke and freestyle, possibly causing a wider and inefficient stroke. Breathing may be more difficult and may cause the swimmer to lift their head higher instead of efficiently rotating. The catch and pull lose power because of the inability to properly produce force, and lack of rotation increases the risk for swimmer’s shoulder.',
+        ? 'Pass!'
+        : 'Needs work: limited rotation can widen freestyle or backstroke and make breathing feel like a lift instead of a roll. That often steals power from the catch and can irritate the shoulders over time.',
   });
 
   const extL = answers['shoulder-external-left'];
@@ -97,9 +97,9 @@ function buildReport(answers) {
     title: 'Active Shoulder External Rotation',
     status: extPass ? 'pass' : 'fail',
     body: extPass
-      ? 'PASS! (Left and right)'
-      : `FAIL — Swimmer may struggle to get into high elbow position in freestyle, having them not be able to get into a strong catch position. The shoulder joint can become less stable over time, increasing risk of swimmer’s shoulder. Lack of shoulder external rotation can also cause forward shoulder position which places unnecessary tension in front of the shoulder.
-Left: ${extL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${extR === 'yes' ? 'PASS' : 'FAIL'}`,
+      ? 'Pass! Left and right look good.'
+      : `Needs work: tough to reach a high elbow catch when external rotation is limited, which can stress the front of the shoulder over time.
+Left: ${extL === 'yes' ? 'Pass' : 'Needs work'}, right: ${extR === 'yes' ? 'Pass' : 'Needs work'}`,
   });
 
   const intL = answers['shoulder-internal-left'];
@@ -110,9 +110,9 @@ Left: ${extL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${extR === 'yes' ? 'PASS' : 
     title: 'Active Shoulder Internal Rotation',
     status: intPass ? 'pass' : 'fail',
     body: intPass
-      ? 'PASS! (Left and right)'
-      : `FAIL — Swimmer often cannot finish the pull behind the body, ultimately making the arm recovery look stiff and forced. Swimmer may also struggle to fully contract big muscles like the pecs and lats, leading to decreased force production. Over time, lack of internal rotation can increase risk of swimmer’s shoulder, and a weaker rotator cuff.
-Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 'FAIL'}`,
+      ? 'Pass! Left and right look good.'
+      : `Needs work: finishing the pull can feel stiff and recovery can look forced. You may leave power on the table in the lats and chest, and the shoulder can feel less supported over time.
+Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass' : 'Needs work'}`,
   });
 
   const pelvis = answers['pelvic-tilt'];
@@ -122,8 +122,8 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
     status: pelvis === 'yes' ? 'pass' : 'fail',
     body:
       pelvis === 'yes'
-        ? 'PASS!'
-        : 'FAIL — Swimmer may struggle to kick from hips and compensate by kicking from the knees. Swimmer may also struggle to properly use their core and instead, rely on lower back muscles, leading to low back and hip flexor tightness or soreness. Hips also may sink in strokes like butterfly or breaststroke, and swing side to side on freestyle and backstroke. An unstable or immobile pelvis leads to inefficient force transfer from the upper body to the lower body, and vice versa.',
+        ? 'Pass!'
+        : 'Needs work: hip driven kick can turn knee heavy, and the low back may do more than the core. Hips can sink on fly or breast, or sway on free and back, which makes it harder to connect power from top to bottom.',
   });
 
   const hip = answers['hip-internal-rotation'];
@@ -133,8 +133,8 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
     status: hip === 'yes' ? 'pass' : 'fail',
     body:
       hip === 'yes'
-        ? 'PASS!'
-        : 'FAIL — Swimmer may experience a wide kick during breaststroke and knees coming forward. Swimmer may also complain of knee, low back, foot/ankle or hip discomfort. Lack of hip internal rotation can also limit how well the swimmer can use their hips efficiently in the pool, leading to lackluster performance.',
+        ? 'Pass!'
+        : 'Needs work: breaststroke kick can get wide with knees drifting forward, and knees, low back, feet, or hips may nag. Limited internal rotation can dull how well you use your hips across strokes.',
   });
 
   const ham = answers['tight-hamstrings'];
@@ -144,8 +144,8 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
     status: ham === 'no' ? 'pass' : 'fail',
     body:
       ham === 'no'
-        ? 'PASS!'
-        : 'Possible lack of pelvic position/stability and overstretched hamstrings, caused by lack of core and glute strength. (Refer to pelvic tilt assessment.)',
+        ? 'Pass!'
+        : 'Often ties to pelvic position or stability and hamstrings that feel tight but may be overstretched, usually with room to strengthen core and glutes. Compare with the pelvic tilt screen.',
   });
 
   const hf = answers['tight-hip-flexors'];
@@ -155,8 +155,8 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
     status: hf === 'no' ? 'pass' : 'fail',
     body:
       hf === 'no'
-        ? 'PASS!'
-        : 'Possible lack of pelvic stability and shortened hip flexors, caused by a lack of core and glute strength. Can also be caused by a lack of hip internal rotation. (Refer to pelvic tilt and hip internal rotation assessment.)',
+        ? 'Pass!'
+        : 'Often shows up with less pelvic stability and hip flexors that stay short, with core and glutes needing love. Hip internal rotation can be part of the story too. Compare with pelvic tilt and hip internal rotation.',
   });
 
   const lb = answers['tight-lower-back'];
@@ -166,8 +166,8 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
     status: lb === 'no' ? 'pass' : 'fail',
     body:
       lb === 'no'
-        ? 'PASS!'
-        : 'Possible lack of pelvic stability and overstressed spinal stabilizers from poorly aligned pelvis. (Refer to pelvic tilt assessment.)',
+        ? 'Pass!'
+        : 'Often tracks back to pelvic stability and back muscles working overtime when the pelvis is not stacked. Compare with the pelvic tilt screen.',
   });
 
   const traps = answers['tight-upper-traps'];
@@ -177,8 +177,8 @@ Left: ${intL === 'yes' ? 'PASS' : 'FAIL'} · Right: ${intR === 'yes' ? 'PASS' : 
     status: traps === 'no' ? 'pass' : 'fail',
     body:
       traps === 'no'
-        ? 'PASS!'
-        : 'Possible lack of shoulder blade and rotator cuff mobility and strength, stemming from possible lack of thoracic mobility or weakness. (Refer to thoracic mobility assessments.)',
+        ? 'Pass!'
+        : 'Often links to shoulder blade and rotator cuff mobility or strength, sometimes coming from the upper back. Compare with the thoracic mobility screens.',
   });
 
   return rows;
@@ -196,7 +196,7 @@ function getRegionStatus(rows, keys) {
 const movementConfigs = [
   {
     slug: 'thoracic-extension',
-    title: 'Thoracic Mobility — Extension',
+    title: 'Thoracic mobility: extension',
     question: 'Can you achieve a minimum of 45 degrees of upper back extension?',
     instructions: [
       'Start in seated position with arms across the chest and hands on opposite shoulders.',
@@ -208,7 +208,7 @@ const movementConfigs = [
   },
   {
     slug: 'thoracic-rotation',
-    title: 'Thoracic Mobility — Rotation',
+    title: 'Thoracic mobility: rotation',
     question: 'Can you achieve a minimum of 45 degrees of torso rotation on both sides?',
     instructions: [
       'Start in seated position with knees tight together, arms across the chest, and hands on opposite shoulders.',
@@ -220,7 +220,7 @@ const movementConfigs = [
   },
   {
     slug: 'shoulder-external',
-    title: 'Active Shoulder — External Rotation',
+    title: 'Active shoulder: external rotation',
     question: 'Can you touch your same-side shoulder blade with your hand?',
     instructions: [
       'Start in standing position with arms to the side.',
@@ -231,7 +231,7 @@ const movementConfigs = [
   },
   {
     slug: 'shoulder-internal',
-    title: 'Active Shoulder — Internal Rotation',
+    title: 'Active shoulder: internal rotation',
     question: 'Can you touch your opposite-side shoulder blade with your hand? (Keep palm facing back, not towards your back.)',
     instructions: [
       'Start in standing position with arms to the side.',
@@ -267,8 +267,8 @@ const movementConfigs = [
   },
   {
     slug: 'tightness',
-    title: 'Mobility & Tightness Check-In',
-    question: 'Answer yes if you regularly feel tightness in that area.',
+    title: 'Mobility and tightness check in',
+    question: 'Say yes if that area feels tight on you most days.',
     instructions: [],
     type: 'tightness',
     fields: [
@@ -314,7 +314,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
         status: getRegionStatus(reportRows, ['shoulder-external', 'shoulder-internal', 'tight-upper-traps']),
       },
       {
-        label: 'Pelvis & Hips',
+        label: 'Pelvis and hips',
         status: getRegionStatus(reportRows, [
           'pelvic-tilt',
           'hip-internal-rotation',
@@ -469,7 +469,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
 
   return (
     <div className={`fitness-assessment fitness-assessment--theme-${theme}`}>
-      <h2>White Water Method — Movement Assessment</h2>
+      <h2>White Water Method movement assessment</h2>
 
       {phase !== 'results' && (
         <div className="progress-bar" aria-hidden="true">
@@ -479,7 +479,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
 
       {phase === 'contact' && (
         <>
-          <p className="progress-text">Part 1 of 2 — Your details</p>
+          <p className="progress-text">Part 1 of 2: Your details</p>
           <form
             className="assessment-form"
             onSubmit={(e) => {
@@ -594,7 +594,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
       {phase === 'movement' && currentMovement && (
         <>
           <p className="progress-text">
-            Part 2 of 2 — Movement {movementIndex + 1} of {totalMovementSteps}
+            Part 2 of 2: Movement {movementIndex + 1} of {totalMovementSteps}
           </p>
           <div className="movement-screen">
             {currentMovement.type !== 'tightness' && (

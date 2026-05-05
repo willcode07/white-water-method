@@ -96,7 +96,7 @@ const FitnessWebsite = () => {
               e.preventDefault();
               scrollToSection('home');
             }}
-            aria-label="White Water Method — home"
+            aria-label="White Water Method home"
           >
             <img
               src={logoSrc}
@@ -143,11 +143,10 @@ const FitnessWebsite = () => {
             height={320}
             decoding="async"
           />
-          <h1 className="hero-title">START WITH YOUR FREE ASSESSMENT</h1>
+          <h1 className="hero-title">Start with your free assessment</h1>
           <p className="hero-subtitle">
-            Complete the movement assessment first—you&apos;ll see a clear report of how mobility and
-            tightness may relate to your stroke. Then book a meeting to align on your goals and program
-            fit.
+            Take the movement assessment first. You&apos;ll get a clear snapshot of how mobility and
+            tightness may relate to your stroke. Then book a call to line up goals and program fit.
           </p>
           <div className="hero-cta-group">
             <button
@@ -189,13 +188,12 @@ const FitnessWebsite = () => {
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="section-container">
-          <h2 className="section-title">Created for swimmers by a swimmer.</h2>
+          <h2 className="section-title">Built for swimmers by a swimmer.</h2>
           <p className="section-description">
-            White Water Method isn't a one-size-fits-all program. We understand that every swimmer 
-            has unique limitations, imbalances, and goals. Through comprehensive assessment and 
-            movement analysis, we identify the root causes of your problems—whether that's chronic 
-            shoulder pain, technique issues, or performance plateaus—and design a program that 
-            specifically addresses what YOU need to improve.
+            White Water Method is not a one size fits all plan. Every swimmer has their own limits,
+            imbalances, and goals. With a full assessment and movement review, we find what is holding
+            you back (sore shoulders, stroke habits, or a plateau) and build programming around what you
+            need most.
           </p>
         </div>
       </section>
@@ -203,19 +201,19 @@ const FitnessWebsite = () => {
       {/* How We Help Section - Point A to Point B */}
       <section id="how-we-help" className="how-we-help-section">
         <div className="section-container">
-          <h2 className="section-title">How it works: point A to point B</h2>
+          <h2 className="section-title">How it works</h2>
           <p className="section-description">
-            A simple three-step loop—assessment, targeted programming, and progression—so you always know
-            where you stand and what comes next.
+            Three simple steps: assess, train with purpose, then progress. You always know where you are
+            and what is next.
           </p>
           <div className="process-steps">
             <div className="process-step">
               <div className="process-number">1</div>
               <div className="process-content">
-                <h3>Identify movement issues</h3>
+                <h3>See what is limiting you</h3>
                 <p>
-                  We identify possible physiological movement issues that may be hindering technique,
-                  diminishing force output, and causing aches or pains.
+                  We look for movement patterns that may be slowing technique, softening power, or
+                  feeding everyday aches.
                 </p>
               </div>
             </div>
@@ -225,8 +223,8 @@ const FitnessWebsite = () => {
               <div className="process-content">
                 <h3>Build your program</h3>
                 <p>
-                  We create a program to improve current movement issues to alleviate discomfort, improve
-                  efficiency in the water, and ultimately facilitate faster swimming.
+                  We shape training to address what we find so you feel better, move cleaner in the water,
+                  and swim faster over time.
                 </p>
               </div>
             </div>
@@ -236,8 +234,8 @@ const FitnessWebsite = () => {
               <div className="process-content">
                 <h3>Progress with you</h3>
                 <p>
-                  We continue to build on each program so each swimmer keeps improving according to their
-                  skill level and physiological needs—no matter the goal.
+                  We keep updating your plan as you level up, whether you are chasing a big meet or just
+                  want to feel strong again.
                 </p>
               </div>
             </div>
@@ -250,9 +248,9 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">What We Offer</h2>
           <p className="section-description offer-section-lead">
-            Individual and team training for swimmers. Expand a card for what&apos;s included, how it works,
-            and monthly pricing. Complete the assessment first so recommendations match your movement
-            profile; the call is for alignment and next steps—not a pricing ambush.
+            Training for individuals and teams. Open a card for what is included, how it works, and
+            monthly pricing. Finish the assessment first so guidance matches your movement; the call is
+            simply to align and plan next steps.
           </p>
           <div className="offer-grid">
             <div 
@@ -263,7 +261,7 @@ const FitnessWebsite = () => {
                 <div className="offer-icon">👤</div>
                 <div className="offer-header-content">
                   <h3>Individual Training</h3>
-                  <p>One-on-one programming built around your assessment, goals, and schedule.</p>
+                  <p>One on one programming built around your assessment, goals, and schedule.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'individual' ? '−' : '+'}</div>
               </div>
@@ -275,7 +273,7 @@ const FitnessWebsite = () => {
                       <ul>
                         <li>Program tailored to your limitations, goals, and pool schedule</li>
                         <li>Weekly updates as you progress</li>
-                        <li>Movement analysis to target root causes, not symptoms</li>
+                        <li>Movement work aimed at causes, not quick fixes</li>
                         <li>Direct messaging for questions and tweaks</li>
                         <li>Recovery and prehab built into the plan</li>
                       </ul>
@@ -369,19 +367,19 @@ const FitnessWebsite = () => {
 
       <section id="transparency" className="transparency-section">
         <div className="section-container">
-          <h2 className="section-title">Pricing &amp; transparency</h2>
+          <h2 className="section-title">Pricing and transparency</h2>
           <p className="section-description transparency-lead">
-            We want you fully informed before the call: what the program is, what benefits to expect, and
-            what it costs. No hidden fees—just clear options so you can decide if White Water Method fits.
+            You should know what you are getting, what to expect, and what it costs before we chat. No
+            surprise fees, just clear options so you can see if we are a fit.
           </p>
           <ul className="transparency-list">
             <li>
-              <strong>What you get:</strong> Swim-specific strength, mobility, and conditioning—not a generic
-              gym template—with progression and support tailored after your assessment.
+              <strong>What you get:</strong> Swim focused strength, mobility, and conditioning (not a
+              generic gym plan), with progression and support shaped after your assessment.
             </li>
             <li>
-              <strong>Benefits:</strong> Better movement quality in the water, reduced nagging pain from
-              compensations, and training that respects pool schedule and your event focus.
+              <strong>Benefits:</strong> Cleaner movement in the water, less everyday ache from
+              compensations, and training that respects your pool time and event focus.
             </li>
             <li>
               <strong>Cost:</strong> Individual programming is <strong>$200/month</strong>. Team programs
@@ -390,7 +388,7 @@ const FitnessWebsite = () => {
             </li>
             <li>
               <strong>After the assessment:</strong> Book a meeting to review your report, confirm fit,
-              and onboard—already knowing the investment and what&apos;s included.
+              and get started, already knowing the investment and what is included.
             </li>
           </ul>
         </div>
@@ -411,7 +409,7 @@ const FitnessWebsite = () => {
                 of the water. Beyond the gym, Carlos provided advice on recovery and nutrition. I highly
                 recommend this program to any swimmer looking for a personalized and results-driven program.
               </p>
-              <p className="testimonial-author">Carla Gonzalez — Venezuelan National Team</p>
+              <p className="testimonial-author">Carla Gonzalez, Venezuelan National Team</p>
             </div>
             <div className="testimonial-card">
               <div className="testimonial-avatar">KN</div>
@@ -425,7 +423,7 @@ const FitnessWebsite = () => {
                 White Water Method is a professional, results-driven program that I would confidently
                 recommend to any swimmer or athlete looking to elevate their physical preparation.
               </p>
-              <p className="testimonial-author">Kurt Niehaus — KN Swim Academy</p>
+              <p className="testimonial-author">Kurt Niehaus, KN Swim Academy</p>
             </div>
           </div>
         </div>
@@ -435,10 +433,12 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">Stay Updated</h2>
           <div className="newsletter-section">
-            <p className="newsletter-description">Subscribe to our newsletter for training tips, updates, and exclusive content.</p>
+            <p className="newsletter-description">
+              Join the list for training tips and occasional updates.
+            </p>
             <form className="newsletter-form" onSubmit={(e) => {
               e.preventDefault();
-              alert('Thank you for subscribing to our newsletter!');
+              alert('Thanks! You are on the list.');
             }}>
               <div className="newsletter-input-group">
                 <input type="text" placeholder="First name" className="newsletter-input" />
