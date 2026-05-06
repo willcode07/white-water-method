@@ -402,6 +402,27 @@
   text-align: center;
 }
 
+.results-email-note {
+  font-size: 0.88rem;
+  color: var(--fa-muted);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.results-email-note--success {
+  color: var(--fa-text);
+}
+
+.results-email-note--error,
+.results-email-note--skipped {
+  color: var(--fa-muted);
+}
+
+.fitness-assessment--theme-dark .results-email-note--success {
+  color: var(--fa-text);
+}
+
 .results-region-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

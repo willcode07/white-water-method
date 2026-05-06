@@ -70,23 +70,23 @@ function buildReport(answers) {
   const ext = answers['thoracic-extension'];
   rows.push({
     key: 'thoracic-extension',
-    title: 'Thoracic mobility: extension',
+    title: 'Thoracic Mobility - Extension',
     status: ext === 'yes' ? 'pass' : 'fail',
     body:
       ext === 'yes'
-        ? 'Pass!'
-        : 'Needs work: swimmers often struggle to hold a clean line, which can load the shoulders and shorten strokes. Breathing can also pull you out of alignment.',
+        ? 'PASS!'
+        : 'FAIL - Swimmer may struggle to maintain streamline position, and place unnecessary stress on shoulders (higher risk for shoulder pain). The swimmer\u2019s strokes become shorter and less powerful, and breathing can throw off alignment.',
   });
 
   const rot = answers['thoracic-rotation'];
   rows.push({
     key: 'thoracic-rotation',
-    title: 'Thoracic mobility: rotation',
+    title: 'Thoracic Mobility - Rotation',
     status: rot === 'yes' ? 'pass' : 'fail',
     body:
       rot === 'yes'
-        ? 'Pass!'
-        : 'Needs work: limited rotation can widen freestyle or backstroke and make breathing feel like a lift instead of a roll. That often steals power from the catch and can irritate the shoulders over time.',
+        ? 'PASS!'
+        : 'FAIL - Swimmer may struggle with rotation in their strokes, especially backstroke and freestyle, possibly causing a wider and inefficient stroke. Breathing may be more difficult and may cause the swimmer to lift their head higher instead of efficiently rotating. The catch and pull lose power because of the inability to properly produce force, and lack of rotation increases the risk for swimmer\u2019s shoulder.',
   });
 
   const extL = answers['shoulder-external-left'];
@@ -97,9 +97,9 @@ function buildReport(answers) {
     title: 'Active Shoulder External Rotation',
     status: extPass ? 'pass' : 'fail',
     body: extPass
-      ? 'Pass! Left and right look good.'
-      : `Needs work: tough to reach a high elbow catch when external rotation is limited, which can stress the front of the shoulder over time.
-Left: ${extL === 'yes' ? 'Pass' : 'Needs work'}, right: ${extR === 'yes' ? 'Pass' : 'Needs work'}`,
+      ? 'PASS!'
+      : `Fail - Swimmer may struggle to get into high elbow position in freestyle, having them not be able to get into a strong catch position. The shoulder joint can become less stable over time, increasing risk of swimmer\u2019s shoulder. Lack of shoulder external rotation can also cause forward shoulder position which places unnecessary tension in front of the shoulder.
+Left: ${extL === 'yes' ? 'PASS' : 'FAIL'}, right: ${extR === 'yes' ? 'PASS' : 'FAIL'}`,
   });
 
   const intL = answers['shoulder-internal-left'];
@@ -110,9 +110,9 @@ Left: ${extL === 'yes' ? 'Pass' : 'Needs work'}, right: ${extR === 'yes' ? 'Pass
     title: 'Active Shoulder Internal Rotation',
     status: intPass ? 'pass' : 'fail',
     body: intPass
-      ? 'Pass! Left and right look good.'
-      : `Needs work: finishing the pull can feel stiff and recovery can look forced. You may leave power on the table in the lats and chest, and the shoulder can feel less supported over time.
-Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass' : 'Needs work'}`,
+      ? 'PASS!'
+      : `FAIL - Swimmer often cannot finish the pull behind the body, ultimately making the arm recovery look stiff and forced. Swimmer may also struggle to fully contract big muscles like the pecs and lats, leading to decreased force production. Over time, lack of internal rotation can increase risk of swimmer\u2019s shoulder, and a weaker rotator cuff.
+Left: ${intL === 'yes' ? 'PASS' : 'FAIL'}, right: ${intR === 'yes' ? 'PASS' : 'FAIL'}`,
   });
 
   const pelvis = answers['pelvic-tilt'];
@@ -122,8 +122,8 @@ Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass
     status: pelvis === 'yes' ? 'pass' : 'fail',
     body:
       pelvis === 'yes'
-        ? 'Pass!'
-        : 'Needs work: hip driven kick can turn knee heavy, and the low back may do more than the core. Hips can sink on fly or breast, or sway on free and back, which makes it harder to connect power from top to bottom.',
+        ? 'PASS!'
+        : 'FAIL - Swimmer may struggle to kick from hips and compensate by kicking from the knees. Swimmer may also struggle to properly use their core and instead, rely on lower back muscles, leading to low back and hip flexor tightness or soreness. Hips also may sink in strokes like butterfly or breaststroke, and swing side to side on freestyle and backstroke. An unstable or immobile pelvis leads to inefficient force transfer from the upper body to the lower body, and vice versa.',
   });
 
   const hip = answers['hip-internal-rotation'];
@@ -133,8 +133,8 @@ Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass
     status: hip === 'yes' ? 'pass' : 'fail',
     body:
       hip === 'yes'
-        ? 'Pass!'
-        : 'Needs work: breaststroke kick can get wide with knees drifting forward, and knees, low back, feet, or hips may nag. Limited internal rotation can dull how well you use your hips across strokes.',
+        ? 'PASS!'
+        : 'FAIL - Swimmer may experience a wide kick during breaststroke and knees coming forward. Swimmer may also complain of knee, low back, foot/ankle or hip discomfort. Lack of hip internal rotation can also limit how well the swimmer can use their hips efficiently in the pool, leading to lackluster performance.',
   });
 
   const ham = answers['tight-hamstrings'];
@@ -144,8 +144,8 @@ Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass
     status: ham === 'no' ? 'pass' : 'fail',
     body:
       ham === 'no'
-        ? 'Pass!'
-        : 'Often ties to pelvic position or stability and hamstrings that feel tight but may be overstretched, usually with room to strengthen core and glutes. Compare with the pelvic tilt screen.',
+        ? 'PASS!'
+        : 'Possible lack of pelvic position/stability and overstretched hamstrings, caused by lack of core and glute strength. (refer to pelvic tilt assessment)',
   });
 
   const hf = answers['tight-hip-flexors'];
@@ -155,19 +155,19 @@ Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass
     status: hf === 'no' ? 'pass' : 'fail',
     body:
       hf === 'no'
-        ? 'Pass!'
-        : 'Often shows up with less pelvic stability and hip flexors that stay short, with core and glutes needing love. Hip internal rotation can be part of the story too. Compare with pelvic tilt and hip internal rotation.',
+        ? 'PASS!'
+        : 'Possible lack of pelvic stability and shortened hip flexors, caused by a lack of core and glute strength. Can also be caused by a lack of hip internal rotation. (refer to pelvic tilt and hips internal rotation assessment)',
   });
 
   const lb = answers['tight-lower-back'];
   rows.push({
     key: 'tight-lower-back',
-    title: 'Tight lower back?',
+    title: 'Tight low back?',
     status: lb === 'no' ? 'pass' : 'fail',
     body:
       lb === 'no'
-        ? 'Pass!'
-        : 'Often tracks back to pelvic stability and back muscles working overtime when the pelvis is not stacked. Compare with the pelvic tilt screen.',
+        ? 'PASS!'
+        : 'Possible lack of pelvic stability and overstressed spinal stabilizers from poorly aligned pelvis. (refer to pelvic tilt assessment)',
   });
 
   const traps = answers['tight-upper-traps'];
@@ -177,11 +177,66 @@ Left: ${intL === 'yes' ? 'Pass' : 'Needs work'}, right: ${intR === 'yes' ? 'Pass
     status: traps === 'no' ? 'pass' : 'fail',
     body:
       traps === 'no'
-        ? 'Pass!'
-        : 'Often links to shoulder blade and rotator cuff mobility or strength, sometimes coming from the upper back. Compare with the thoracic mobility screens.',
+        ? 'PASS!'
+        : 'Possible lack of shoulder blade and rotator cuff mobility and strength, stemming from possible lack of thoracic mobility or weakness. (Refer to thoracic mobility assessments)',
   });
 
   return rows;
+}
+
+function formatAssessmentSubmissionMessage(contact, answers, reportRows) {
+  const lines = [
+    'White Water Method: movement assessment submission',
+    '',
+    'CONTACT',
+    `Name: ${contact.firstName} ${contact.lastName}`,
+    `Email: ${contact.email}`,
+    `Phone: ${contact.phone}`,
+    `Country: ${contact.country}`,
+    `Primary strokes: ${contact.strokes.join(', ')}`,
+    '',
+    'ANSWERS (raw)',
+    JSON.stringify(answers, null, 2),
+    '',
+    'REPORT',
+  ];
+  reportRows.forEach((row) => {
+    lines.push('');
+    lines.push(`${row.title} (${row.status})`);
+    lines.push(row.body);
+  });
+  return lines.join('\n');
+}
+
+async function submitAssessmentToOwner(contact, answers) {
+  const accessKey = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY;
+  if (!accessKey || !String(accessKey).trim()) {
+    return { ok: false, skipped: true };
+  }
+  const reportRows = buildReport(answers);
+  const message = formatAssessmentSubmissionMessage(contact, answers, reportRows);
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: String(accessKey).trim(),
+        subject: `WWM assessment: ${contact.firstName} ${contact.lastName}`,
+        name: `${contact.firstName} ${contact.lastName}`,
+        email: contact.email,
+        replyto: contact.email,
+        message,
+      }),
+    });
+    const data = await response.json();
+    if (data.success) return { ok: true, skipped: false };
+    return { ok: false, skipped: false };
+  } catch {
+    return { ok: false, skipped: false };
+  }
 }
 
 function getRegionStatus(rows, keys) {
@@ -196,7 +251,7 @@ function getRegionStatus(rows, keys) {
 const movementConfigs = [
   {
     slug: 'thoracic-extension',
-    title: 'Thoracic mobility: extension',
+    title: 'Thoracic Mobility - Extension',
     question: 'Can you achieve a minimum of 45 degrees of upper back extension?',
     instructions: [
       'Start in seated position with arms across the chest and hands on opposite shoulders.',
@@ -208,7 +263,7 @@ const movementConfigs = [
   },
   {
     slug: 'thoracic-rotation',
-    title: 'Thoracic mobility: rotation',
+    title: 'Thoracic Mobility - Rotation',
     question: 'Can you achieve a minimum of 45 degrees of torso rotation on both sides?',
     instructions: [
       'Start in seated position with knees tight together, arms across the chest, and hands on opposite shoulders.',
@@ -220,7 +275,7 @@ const movementConfigs = [
   },
   {
     slug: 'shoulder-external',
-    title: 'Active shoulder: external rotation',
+    title: 'Active Shoulder External Rotation',
     question: 'Can you touch your same-side shoulder blade with your hand?',
     instructions: [
       'Start in standing position with arms to the side.',
@@ -231,7 +286,7 @@ const movementConfigs = [
   },
   {
     slug: 'shoulder-internal',
-    title: 'Active shoulder: internal rotation',
+    title: 'Active Shoulder Internal Rotation',
     question: 'Can you touch your opposite-side shoulder blade with your hand? (Keep palm facing back, not towards your back.)',
     instructions: [
       'Start in standing position with arms to the side.',
@@ -274,7 +329,7 @@ const movementConfigs = [
     fields: [
       { field: 'tight-hamstrings', label: 'Tight hamstrings?' },
       { field: 'tight-hip-flexors', label: 'Tight hip flexors?' },
-      { field: 'tight-lower-back', label: 'Tight lower back?' },
+      { field: 'tight-lower-back', label: 'Tight low back?' },
       { field: 'tight-upper-traps', label: 'Tight upper traps?' },
     ],
   },
@@ -288,6 +343,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
   const [contactErrors, setContactErrors] = useState({});
   const [showAthleteSummary, setShowAthleteSummary] = useState(false);
   const [showDetailedBreakdown, setShowDetailedBreakdown] = useState(false);
+  const [ownerEmailStatus, setOwnerEmailStatus] = useState('idle');
   const movementVideoRef = useRef(null);
 
   const totalMovementSteps = movementConfigs.length;
@@ -411,7 +467,13 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
     if (movementIndex < totalMovementSteps - 1) {
       setMovementIndex((i) => i + 1);
     } else {
+      setOwnerEmailStatus('sending');
       setPhase('results');
+      submitAssessmentToOwner(contact, answers).then((result) => {
+        if (result.skipped) setOwnerEmailStatus('skipped');
+        else if (result.ok) setOwnerEmailStatus('sent');
+        else setOwnerEmailStatus('error');
+      });
     }
   };
 
@@ -452,6 +514,7 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
     setContactErrors({});
     setShowAthleteSummary(false);
     setShowDetailedBreakdown(false);
+    setOwnerEmailStatus('idle');
   };
 
   const mediaLabel = (slug) => {
@@ -741,6 +804,26 @@ const FitnessAssessment = ({ onClose, onBookConsultation, theme = 'light' }) => 
         <div className="results-container">
           <p className="progress-text">Your report</p>
           <h3>Assessment Results</h3>
+          {ownerEmailStatus === 'sending' && (
+            <p className="results-email-note">Sending your results to the coaching inbox…</p>
+          )}
+          {ownerEmailStatus === 'sent' && (
+            <p className="results-email-note results-email-note--success">
+              Your submission was sent. We&apos;ll follow up using the contact info you provided.
+            </p>
+          )}
+          {ownerEmailStatus === 'error' && (
+            <p className="results-email-note results-email-note--error">
+              We couldn&apos;t send the email notification. Please book a meeting or email us with your
+              results, or try again later.
+            </p>
+          )}
+          {ownerEmailStatus === 'skipped' && (
+            <p className="results-email-note results-email-note--skipped">
+              Email delivery is not configured on this site yet. Screenshot or save this page and reach
+              out via Book a meeting or the address in the site footer.
+            </p>
+          )}
           <div className="results-region-summary" aria-label="Body region summary">
             {regionSummary.map((region) => (
               <div key={region.label} className="results-region-summary__item">

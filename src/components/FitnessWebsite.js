@@ -4,9 +4,33 @@ import FitnessAssessment from './FitnessAssessment';
 import CalendlyWidget from './CalendlyWidget';
 
 const logoSrc = `${process.env.PUBLIC_URL || ''}/wwm-logo.png`;
+const heroImgSwimmer = `${process.env.PUBLIC_URL || ''}/hero-swimmer-butterfly.png`;
+const heroImgKettlebell = `${process.env.PUBLIC_URL || ''}/hero-kettlebell.png`;
+const heroImgDumbbell = `${process.env.PUBLIC_URL || ''}/hero-dumbbell.png`;
+const founderPhotoSrc = `${process.env.PUBLIC_URL || ''}/founder-carlos-omana.png`;
 
 const THEME_KEY = 'wwm-theme';
 const CONTACT_EMAIL = 'whitewatermethod@gmail.com';
+const INSTAGRAM_URL = (
+  process.env.REACT_APP_INSTAGRAM_URL || 'https://www.instagram.com'
+).trim();
+
+function InstagramIcon() {
+  return (
+    <svg
+      className="footer-instagram__icon"
+      width={22}
+      height={22}
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
+      <path
+        fill="currentColor"
+        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 110 2.881 1.44 1.44 0 010-2.881z"
+      />
+    </svg>
+  );
+}
 
 function ThemeIconSun() {
   return (
@@ -110,9 +134,9 @@ const FitnessWebsite = () => {
           </a>
           <ul className="nav-menu">
             <li><a href="#about" onClick={() => scrollToSection('about')} className={activeSection === 'about' ? 'active' : ''}>About</a></li>
+            <li><a href="#founder" onClick={() => scrollToSection('founder')} className={activeSection === 'founder' ? 'active' : ''}>Founder</a></li>
             <li><a href="#how-we-help" onClick={() => scrollToSection('how-we-help')} className={activeSection === 'how-we-help' ? 'active' : ''}>How it works</a></li>
             <li><a href="#offer" onClick={() => scrollToSection('offer')} className={activeSection === 'offer' ? 'active' : ''}>What we offer</a></li>
-            <li><a href="#transparency" onClick={() => scrollToSection('transparency')} className={activeSection === 'transparency' ? 'active' : ''}>Pricing</a></li>
             <li><a href="#testimonials" onClick={() => scrollToSection('testimonials')} className={activeSection === 'testimonials' ? 'active' : ''}>Testimonials</a></li>
             <li><a href="#join" onClick={() => scrollToSection('join')} className={activeSection === 'join' ? 'active' : ''}>Stay Updated</a></li>
           </ul>
@@ -143,10 +167,10 @@ const FitnessWebsite = () => {
             height={320}
             decoding="async"
           />
-          <h1 className="hero-title">Start with your free assessment</h1>
+          <h1 className="hero-title">Start With Your Free Assessment:</h1>
           <p className="hero-subtitle">
-            Take the movement assessment first. You&apos;ll get a clear snapshot of how mobility and
-            tightness may relate to your stroke. Then book a call to line up goals and program fit.
+            Take the FREE Movement Assessment to better understand how movement limitations may be
+            connected to your stroke and current symptoms!
           </p>
           <div className="hero-cta-group">
             <button
@@ -165,21 +189,30 @@ const FitnessWebsite = () => {
         </div>
         <div className="hero-images">
           <img
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80"
-            alt="Swimmer in action"
+            src={heroImgSwimmer}
+            alt="Swimmer at the surface during butterfly stroke, black and white"
             className="hero-image"
+            width={400}
+            height={300}
+            decoding="async"
             loading="lazy"
           />
           <img
-            src="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=400&h=300&fit=crop&q=80"
-            alt="Swimmer training"
+            src={heroImgKettlebell}
+            alt="Athlete gripping a kettlebell on the gym floor with chalk dust in the air, black and white"
             className="hero-image"
+            width={400}
+            height={300}
+            decoding="async"
             loading="lazy"
           />
           <img
-            src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop&q=80"
-            alt="Competitive swimmer diving"
+            src={heroImgDumbbell}
+            alt="Adjustable dumbbell with chalk dust in dramatic lighting, black and white"
             className="hero-image"
+            width={400}
+            height={300}
+            decoding="async"
             loading="lazy"
           />
         </div>
@@ -188,32 +221,73 @@ const FitnessWebsite = () => {
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="section-container">
-          <h2 className="section-title">Built for swimmers by a swimmer.</h2>
+          <h2 className="section-title">Built For Swimmers By A Swimmer</h2>
           <p className="section-description">
-            White Water Method is not a one size fits all plan. Every swimmer has their own limits,
-            imbalances, and goals. With a full assessment and movement review, we find what is holding
-            you back (sore shoulders, stroke habits, or a plateau) and build programming around what you
-            need most.
+            White Water Method helps swimmers perform at their best by improving movement in the water
+            and building the physical qualities they need to succeed. It&apos;s not a one size fits all
+            approach. Each swimmer is trained based on their individual needs.
           </p>
+          <p className="section-description">
+            Swimmers are often told to adjust their technique, improve their turns, or pull harder. But
+            without the prerequisite mobility, stability, strength, and power, those changes can be
+            difficult to achieve. White Water Method bridges the gap between what coaches are asking for
+            and what swimmers are able to do.
+          </p>
+          <p className="section-description">
+            By developing a strong physical foundation, it leads to more effective practices, better
+            technique, and reduced risk of pain or injury, supporting long-term success in the sport.
+          </p>
+        </div>
+      </section>
+
+      <section id="founder" className="founder-section">
+        <div className="section-container">
+          <h2 className="section-title">About the Founder</h2>
+          <div className="founder-layout">
+            <div className="founder-image-wrap">
+              <img
+                src={founderPhotoSrc}
+                alt="Carlos Omana at the pool by a lane line, wearing a University of Florida swim cap, black and white portrait"
+                className="founder-image"
+                width={520}
+                height={520}
+                decoding="async"
+                loading="lazy"
+              />
+            </div>
+            <div className="founder-copy">
+              <p className="founder-text">
+                Carlos Omana is the owner of White Water Method. Omana trained under Coach Kirk Peppas
+                and at the University of Florida during his swimming career. He also represented
+                Venezuela internationally after his collegiate career.
+              </p>
+              <p className="founder-text">
+                After swimming, Carlos pursued a career in strength and conditioning. He graduated with
+                his M.S. in Human Performance and received certifications as a Certified Strength and
+                Conditioning Specialist, USAW Level 1 Performance Coach, Performance Enhancement
+                Specialist, and Certified Physical Preparation Specialist.
+              </p>
+              <p className="founder-text">
+                In 2024, he started White Water Method which aims to help swimmers and coaches tackle
+                physiological obstacles such as joint discomfort, technique issues, strength, power,
+                mobility, etc.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* How We Help Section - Point A to Point B */}
       <section id="how-we-help" className="how-we-help-section">
         <div className="section-container">
-          <h2 className="section-title">How it works</h2>
-          <p className="section-description">
-            Three simple steps: assess, train with purpose, then progress. You always know where you are
-            and what is next.
-          </p>
+          <h2 className="section-title">How It Works</h2>
           <div className="process-steps">
             <div className="process-step">
               <div className="process-number">1</div>
               <div className="process-content">
-                <h3>See what is limiting you</h3>
                 <p>
-                  We look for movement patterns that may be slowing technique, softening power, or
-                  feeding everyday aches.
+                  Identify possible physiological movement issues that may be hindering technique,
+                  diminishing force output, and causing aches or pains.
                 </p>
               </div>
             </div>
@@ -221,10 +295,9 @@ const FitnessWebsite = () => {
             <div className="process-step">
               <div className="process-number">2</div>
               <div className="process-content">
-                <h3>Build your program</h3>
                 <p>
-                  We shape training to address what we find so you feel better, move cleaner in the water,
-                  and swim faster over time.
+                  Create a program to improve current movement issues to alleviate discomfort, improve
+                  efficiency in the water, and ultimately facilitate faster swimming.
                 </p>
               </div>
             </div>
@@ -232,10 +305,9 @@ const FitnessWebsite = () => {
             <div className="process-step">
               <div className="process-number">3</div>
               <div className="process-content">
-                <h3>Progress with you</h3>
                 <p>
-                  We keep updating your plan as you level up, whether you are chasing a big meet or just
-                  want to feel strong again.
+                  Continue to build on each program to ensure each swimmer continues to improve according
+                  to their skill level and physiological needs, no matter the goal.
                 </p>
               </div>
             </div>
@@ -248,9 +320,9 @@ const FitnessWebsite = () => {
         <div className="section-container">
           <h2 className="section-title">What We Offer</h2>
           <p className="section-description offer-section-lead">
-            Training for individuals and teams. Open a card for what is included, how it works, and
-            monthly pricing. Finish the assessment first so guidance matches your movement; the call is
-            simply to align and plan next steps.
+            Open a program for what&apos;s included and monthly investment. New here? The FREE movement
+            assessment is a great way to see how movement ties to your stroke. Ready to start? Book a
+            meeting to sign up or talk next steps.
           </p>
           <div className="offer-grid">
             <div 
@@ -258,34 +330,40 @@ const FitnessWebsite = () => {
               onClick={() => setExpandedOffer(expandedOffer === 'individual' ? null : 'individual')}
             >
               <div className="offer-card-header">
-                <div className="offer-icon">👤</div>
+                <div className="offer-card-logo-wrap">
+                  <img src={logoSrc} alt="" className="offer-card-logo" width={56} height={56} decoding="async" />
+                </div>
                 <div className="offer-header-content">
-                  <h3>Individual Training</h3>
-                  <p>One on one programming built around your assessment, goals, and schedule.</p>
+                  <h3>Individual Program</h3>
+                  <p>Personal support, assessments, and training built around your goals.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'individual' ? '−' : '+'}</div>
               </div>
               {expandedOffer === 'individual' && (
                 <div className="offer-details">
-                  <div className="offer-details-grid">
+                  <div className="offer-card-media">
+                    <img
+                      src={logoSrc}
+                      alt="White Water Method"
+                      className="offer-card-media-img"
+                      width={200}
+                      height={200}
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="offer-details-grid offer-details-grid--single">
                     <div className="offer-detail-section">
                       <h4>What&apos;s included</h4>
                       <ul>
-                        <li>Program tailored to your limitations, goals, and pool schedule</li>
-                        <li>Weekly updates as you progress</li>
-                        <li>Movement work aimed at causes, not quick fixes</li>
-                        <li>Direct messaging for questions and tweaks</li>
-                        <li>Recovery and prehab built into the plan</li>
+                        <li>Monthly full body movement assessment</li>
+                        <li>Bi-weekly check in through Zoom</li>
+                        <li>Movement Prep</li>
+                        <li>Strength Program</li>
+                        <li>Performance Strategy Guidance PDF</li>
+                        <li>Direct messaging through EverFit</li>
+                        <li>Stroke biomechanical analysis through video</li>
                       </ul>
-                    </div>
-                    <div className="offer-detail-section">
-                      <h4>How it works</h4>
-                      <ol>
-                        <li>Take the assessment so we understand your starting point</li>
-                        <li>Book a call to align on problems, goals, and program fit</li>
-                        <li>Your personalized program is delivered</li>
-                        <li>Ongoing check-ins and adjustments</li>
-                      </ol>
                     </div>
                   </div>
                   <div className="offer-detail-section offer-detail-investment">
@@ -293,15 +371,26 @@ const FitnessWebsite = () => {
                     <p className="offer-price">$200 / month</p>
                     <p className="offer-price-note">Individual programming and support.</p>
                   </div>
-                  <div className="offer-cta-group offer-cta-group-single">
+                  <div className="offer-cta-group">
                     <button
+                      type="button"
                       className="offer-primary-cta"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowCalendly(true);
+                      }}
+                    >
+                      Book a meeting
+                    </button>
+                    <button
+                      type="button"
+                      className="offer-secondary-cta"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowAssessment(true);
                       }}
                     >
-                      Take the assessment
+                      Take the free assessment
                     </button>
                   </div>
                 </div>
@@ -313,33 +402,40 @@ const FitnessWebsite = () => {
               onClick={() => setExpandedOffer(expandedOffer === 'team' ? null : 'team')}
             >
               <div className="offer-card-header">
-                <div className="offer-icon">👥</div>
+                <div className="offer-card-logo-wrap">
+                  <img src={logoSrc} alt="" className="offer-card-logo" width={56} height={56} decoding="async" />
+                </div>
                 <div className="offer-header-content">
-                  <h3>Team Training</h3>
-                  <p>Team-wide programming with variations for age groups, events, and common problem areas.</p>
+                  <h3>Team Program</h3>
+                  <p>Team-wide training, coach support, and seasonal alignment.</p>
                 </div>
                 <div className="expand-icon">{expandedOffer === 'team' ? '−' : '+'}</div>
               </div>
               {expandedOffer === 'team' && (
                 <div className="offer-details">
-                  <div className="offer-details-grid">
+                  <div className="offer-card-media">
+                    <img
+                      src={logoSrc}
+                      alt="White Water Method"
+                      className="offer-card-media-img"
+                      width={200}
+                      height={200}
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="offer-details-grid offer-details-grid--single">
                     <div className="offer-detail-section">
                       <h4>What&apos;s included</h4>
                       <ul>
-                        <li>Team plan plus individual variations where needed</li>
-                        <li>Coach education on anatomy and the &quot;why&quot; behind each block</li>
-                        <li>Progress tracking and regular program updates</li>
-                        <li>Prehab protocols for common swim issues</li>
+                        <li>Bi-weekly check in through Zoom</li>
+                        <li>Movement Prep</li>
+                        <li>Strength Program</li>
+                        <li>Performance Strategy Guidance</li>
+                        <li>Direct messaging through EverFit</li>
+                        <li>Stroke biomechanical analysis through video</li>
+                        <li>Seasonal planning and coordination with swim coach</li>
                       </ul>
-                    </div>
-                    <div className="offer-detail-section">
-                      <h4>How it works</h4>
-                      <ol>
-                        <li>Team lead completes the assessment and shares roster context</li>
-                        <li>Book a call to scope program depth, schedule, and age groups</li>
-                        <li>Custom program design and staff walkthrough</li>
-                        <li>Ongoing support and seasonal adjustments</li>
-                      </ol>
                     </div>
                   </div>
                   <div className="offer-detail-section offer-detail-investment">
@@ -347,50 +443,32 @@ const FitnessWebsite = () => {
                     <p className="offer-price">From $500 / month per team</p>
                     <p className="offer-price-note">Final rate depends on team size and program scope.</p>
                   </div>
-                  <div className="offer-cta-group offer-cta-group-single">
+                  <div className="offer-cta-group">
                     <button
+                      type="button"
                       className="offer-primary-cta"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowCalendly(true);
+                      }}
+                    >
+                      Book a meeting
+                    </button>
+                    <button
+                      type="button"
+                      className="offer-secondary-cta"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowAssessment(true);
                       }}
                     >
-                      Take the assessment
+                      Take the free assessment
                     </button>
                   </div>
                 </div>
               )}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="transparency" className="transparency-section">
-        <div className="section-container">
-          <h2 className="section-title">Pricing and transparency</h2>
-          <p className="section-description transparency-lead">
-            You should know what you are getting, what to expect, and what it costs before we chat. No
-            surprise fees, just clear options so you can see if we are a fit.
-          </p>
-          <ul className="transparency-list">
-            <li>
-              <strong>What you get:</strong> Swim focused strength, mobility, and conditioning (not a
-              generic gym plan), with progression and support shaped after your assessment.
-            </li>
-            <li>
-              <strong>Benefits:</strong> Cleaner movement in the water, less everyday ache from
-              compensations, and training that respects your pool time and event focus.
-            </li>
-            <li>
-              <strong>Cost:</strong> Individual programming is <strong>$200/month</strong>. Team programs
-              start at <strong>$500/month per team</strong> depending on roster size and scope (details in
-              the cards above).
-            </li>
-            <li>
-              <strong>After the assessment:</strong> Book a meeting to review your report, confirm fit,
-              and get started, already knowing the investment and what is included.
-            </li>
-          </ul>
         </div>
       </section>
 
@@ -453,9 +531,20 @@ const FitnessWebsite = () => {
       {/* Footer */}
       <footer className="footer">
         <p className="footer-line">© 2026 White Water Method. All rights reserved.</p>
-        <p className="footer-email">
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-        </p>
+        <div className="footer-social">
+          <p className="footer-email">
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          </p>
+          <a
+            href={INSTAGRAM_URL}
+            className="footer-instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="White Water Method on Instagram"
+          >
+            <InstagramIcon />
+          </a>
+        </div>
       </footer>
 
       {/* Calendly Modal */}
